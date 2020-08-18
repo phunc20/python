@@ -1,4 +1,5 @@
-Here are the steps to have <code>virtualenvwrapper</code> work on a general Linux machine:
+# <code>virtualenvwrapper</code>
+Here are a few steps to have <code>virtualenvwrapper</code> work on a general Linux machine:
 - <code><b>pip install --user virtualenv virtualenvwrapper</b></code> (The <code>--user</code> option will configure the system to install to <code><b>~/.local/bin</b></code> instead of some system-wise path, in other words, specific to the current user)
     ```bash
     [phunc20@headache-x220tablet ~]$ pip
