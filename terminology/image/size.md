@@ -5,7 +5,8 @@ In <code>cv2</code>, there is a function called <code><b>cv2.resize()</b></code>
 - <code><b>shape</b></code> means <code><b>(n_rows, n_cols, n_channels)</b></code>
 - <code><b>size</b></code> means <code><b>(width, height)</b></code>, or equiv. <code><b>(n_cols, n_rows)</b></code>
 
-
+**N.B.** However, this only holds true in Python, and is <b>not</b> a unified term in all programming languages.
+For example, in <b>Julia</b>, <code><b>size()</b></code> returns <code><b>(n_rows, n_cols) = (height, width)</b></code> instead.
 
 
 
