@@ -8,10 +8,8 @@ However, in some scenarios, one might be interested in having other python versi
 <pre># Inside the directory of the uncompressed tarball
 ./configure<br/>
 make<br/>
-# A lot of testing will be printed to stdout; this part is the most time-consuming, more than all of `./configure`, `make` and `sudo make altinstall`, the last being amazingly fast.
-make test<br/>
-# In order not to mess up with the system's default python, which is python3.8, DO NOT `sudo make install`; instead, DO `sudo make altinstall` like suggested in README.rst
-sudo make altinstall
+make test  # A lot of testing will be printed to stdout; this part is the most time-consuming, more than all of `./configure`, `make` and `sudo make altinstall`, the last being amazingly fast.<br/>
+sudo make altinstall  # In order not to mess up with the system's default python, which is python3.8, DO NOT `sudo make install`; instead, DO `sudo make altinstall` like suggested in README.rst
 </pre>
 
 
