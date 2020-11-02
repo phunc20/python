@@ -23,14 +23,17 @@
 ### Indent/Un-indent multiple lines in a cell
 The following tricks apply to many other IDEs as well (e.g. PyCharm, Pluto (for Julia), etc.).
 - Indent
-    01. <code>Shift</code> to color select the intended lines
+    01. <code>Shift - arrow</code> (or using the mouse) to color select the intended lines
     02. <code><b>tab</b></code> to indent. Voila
 - Un-indent
-    01. <code>Shift</code> to color select the intended lines
-    02. <code><b>shift - tab</b></code> to un-indent. Voila
+    01. <code>Shift - arrow</code> (or using the mouse) to color select the intended lines
+    02. <code><b>Shift - tab</b></code> to un-indent
 
-
-
+### (Similarly) Comment/Un-comment multiple lines in a cell
+- Comment
+    01. <code>Shift - arrow</code> (or using the mouse) to color select the intended lines
+    02. <code><b>Ctrl - ?</b></code> to comment
+    03. To un-comment, just **`Ctrl - ?`** again
 
 
 
