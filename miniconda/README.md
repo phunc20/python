@@ -3,12 +3,34 @@
 conda remove --name abc --all
 conda env remove --name pDL
 
+# list all existing envs
 conda info --envs
+# create an env based on the yaml file `environment.yml`
 conda env create -f environment.yml
+
+# create an empty env called `sociald`
+conda create -n sociald
+
+# search for packages
+conda search opencv
+# install a package
+conda install opencv
+
+# export your env to share w/ others
+conda env export > environment.yml
+
+# remove an env
+# either
+conda remove --name myenv --all
+# or
+conda env remove --name myenv
 
 conda config --set auto_activate_base false
 conda config --set auto_activate_base true
 ```
+
+- **cf.** [https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#removing-an-environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#removing-an-environment)
+
 
 ### Create an virtualenv from a `yml` file
 ```bash
@@ -308,6 +330,4 @@ Remove all packages in environment /home/phunc20/.config/miniconda3/envs/pDL:
 # conda environments:
 #
 base                  *  /home/phunc20/.config/miniconda3
-
-[
 ```
