@@ -14,7 +14,9 @@ conda create -n sociald
 # search for packages
 conda search opencv
 # install a package
-conda install opencv
+conda install -n tf2 jupyterlab  # Here, assume the env name is "tf2"
+# Use -y in situations where you cannot confirm by typing into stdout, e.g. in a jupyter cell:
+conda install -n tf2 matplotlib -y
 
 # export your env to share w/ others
 conda env export > environment.yml
