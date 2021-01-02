@@ -5,12 +5,18 @@ However, in some scenarios, one might be interested in having other python versi
 - For <code>python3.6</code> One can easily install using the AUR
 - But when it comes to installing  <code>python3.7</code>  using the AUR, I ran into some problems with pacman/gpg keys. I tried some commands to refresh keys, etc. <b>without success</b>.
 - I then tried to install <code>python3.7</code> from source (using the tarball from [python's official website](https://www.python.org/downloads/source/)). It turned out to be a lot easier than I thought; here were the steps I followed (by referring to the <code>README.rst</code> inside the tarball):
-<pre># Inside the directory of the uncompressed tarball
-./configure<br/>
-make<br/>
-make test  # A lot of testing will be printed to stdout; this part is the most time-consuming, more than all of `./configure`, `make` and `sudo make altinstall`, the last being amazingly fast.<br/>
+```bash
+# Inside the directory of the uncompressed tarball
+./configure
+# or
+./configure --enable-optimizations
+
+make
+
+make test  # A lot of testing will be printed to stdout; this part is the most time-consuming, more than all of `./configure`, `make` and `sudo make altinstall`, the last being amazingly fast.
+
 sudo make altinstall  # In order not to mess up with the system's default python, which is python3.8, DO NOT `sudo make install`; instead, DO `sudo make altinstall` like suggested in README.rst
-</pre>
+```
 
 
 ## Troubleshoot

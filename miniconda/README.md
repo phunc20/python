@@ -1,4 +1,53 @@
-### Cheatsheet
+## Troubleshoot
+- How to specify a package's installed version? Furthermore, when one version has more than one build, how to specify the one you want to install?
+  ```bash
+  (py3.6) ~ ❯❯❯ conda search tensorflow
+  Loading channels: done
+  # Name                       Version           Build  Channel
+  ...
+  tensorflow                     1.6.0               0  pkgs/main
+  tensorflow                     1.7.0               0  pkgs/main
+  tensorflow                     1.8.0               0  pkgs/main
+  tensorflow                     1.8.0      h01c6a4e_0  pkgs/main
+  tensorflow                     1.8.0      h16da8f2_0  pkgs/main
+  tensorflow                     1.8.0      h2742514_0  pkgs/main
+  tensorflow                     1.8.0      h469b60b_0  pkgs/main
+  tensorflow                     1.8.0      h57681fa_0  pkgs/main
+  tensorflow                     1.8.0      h5c3c37f_0  pkgs/main
+  tensorflow                     1.8.0      h645107b_0  pkgs/main
+  tensorflow                     1.8.0      h7b2774c_0  pkgs/main
+  tensorflow                     1.8.0      hb11d968_0  pkgs/main
+  tensorflow                     1.8.0      hb1b1514_0  pkgs/main
+  tensorflow                     1.8.0      hb381393_0  pkgs/main
+  tensorflow                     1.8.0      hc2d9325_0  pkgs/main
+  tensorflow                     1.9.0 eigen_py27hf386fcc_1  pkgs/main
+  tensorflow                     1.9.0 eigen_py35h8c89287_1  pkgs/main
+  tensorflow                     1.9.0 eigen_py36h8c89287_0  pkgs/main
+  tensorflow                     1.9.0 eigen_py36hbec2359_0  pkgs/main
+  tensorflow                     1.9.0 eigen_py36hbec2359_1  pkgs/main
+  tensorflow                     1.9.0 eigen_py36hf386fcc_0  pkgs/main
+  tensorflow                     1.9.0 gpu_py27h233f449_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py27h395d940_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py27hd3a791e_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py35h42d5ad8_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py35h60c0932_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py35hb39db67_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py36h02c5d5e_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py36h220e158_1  pkgs/main
+  tensorflow                     1.9.0 gpu_py36h313df88_1  pkgs/main
+  tensorflow                     1.9.0 mkl_py27h0cb61a4_1  pkgs/main
+  tensorflow                     1.9.0 mkl_py35h5be851a_1  pkgs/main
+  tensorflow                     1.9.0 mkl_py36h0cb61a4_0  pkgs/main
+  tensorflow                     1.9.0 mkl_py36h5be851a_0  pkgs/main
+  tensorflow                     1.9.0 mkl_py36h6d6ce78_0  pkgs/main
+  tensorflow                     1.9.0 mkl_py36h6d6ce78_1  pkgs/main
+  ...
+  (py3.6) ~ ❯❯❯
+  ```
+  - **`conda install -n py3.6 tensorflow=1.12.0`**
+
+
+## Cheatsheet
 ```bash
 conda remove --name abc --all
 conda env remove --name pDL
@@ -10,11 +59,14 @@ conda env create -f environment.yml
 
 # create an empty env called `sociald`
 conda create -n sociald
+# As of 2020/12/31, conda3's default python environment is python3.7
+# To install an env with python3.6, do as follows
+conda create -n py3.6 python=3.6
 
 # search for packages
 conda search opencv
-# install a package
-conda install -n tf2 jupyterlab  # Here, assume the env name is "tf2"
+# install a package  # Here, assume the env name is "tf2"
+conda install -n tf2 jupyterlab
 # Use -y in situations where you cannot confirm by typing into stdout, e.g. in a jupyter cell:
 conda install -n tf2 matplotlib -y
 
