@@ -106,3 +106,17 @@ Here are a few steps to have <code>virtualenvwrapper</code> work on a general Li
         - <code><b>workon my-py37-env</b></code>
     - To <b>get out</b> of the current environment,
         - <code><b>deactivate</b></code>
+
+## Arch-Linux specific
+Due to the rolling-release nature of Arch-based distros, installing `virtualenvwrapper` like above will encounter a problem: When the system's default Python gets upgraded (e.g. from `python3.8` to `python3.9` via `pacman -Syu`), the already installed virtual environments will all become useless.
+
+One remedy to this problem is to install a diff version of python on arch-based machine, say `python3.7` (cf. `../installation/from-source/README.md`). Then `pip3.7 install virtualenvwrapper` in that version of python and remember to set the environment variable to that version of python on your machine as well.
+```bash
+## For python virtualenvwrapper
+export WORKON_HOME="$HOME/.virtualenvs"
+#export VIRTUALENVWRAPPER_PYTHON="$(which python3.8)"
+export VIRTUALENVWRAPPER_PYTHON="$(which python3.7)"
+source "$HOME/.local/bin/virtualenvwrapper.sh"
+```
+
+
