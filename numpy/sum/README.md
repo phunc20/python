@@ -1,3 +1,11 @@
+## How to better understand the result of `np.sum(A)` when `A` is an `ndarray`?
+The best way I can find to explain this is as follows. Say, `A` is an `ndarray` of
+`shape=(a0, a1, a2, a3)`, then `C = np.sum(A, axis=2)` will be another `ndarray` of
+`shape=(a0,a1,a3)` such that for all (fixed) `0<=b0<a0, 0<=b1<a1, 0<=b3<a3`, we have
+`C[b0,b1,b3] = sum(A[b0,b1,i,b3] for i in range(b2))`.
+
+
+
 ```python
 some_shape = (4,4,3)
 np.prod(some_shape)
