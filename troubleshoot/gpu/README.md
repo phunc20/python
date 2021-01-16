@@ -14,6 +14,25 @@ It turned out that when you asked `miniconda` to install some version of `tf`, i
 ```bash
 ~ ❯❯❯ conda create -n tf1
 ~ ❯❯❯ condact tf1
+(tf1) ~ ❯❯❯ conda search tensorflow-gpu
+Loading channels: done
+# Name                       Version           Build  Channel
+tensorflow-gpu                 1.4.1               0  pkgs/main
+tensorflow-gpu                 1.5.0               0  pkgs/main
+tensorflow-gpu                 1.6.0               0  pkgs/main
+tensorflow-gpu                 1.7.0               0  pkgs/main
+tensorflow-gpu                 1.8.0      h7b35bdc_0  pkgs/main
+tensorflow-gpu                 1.9.0      hf154084_0  pkgs/main
+tensorflow-gpu                1.10.0      hf154084_0  pkgs/main
+tensorflow-gpu                1.11.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                1.12.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                1.13.1      h0d30ee6_0  pkgs/main
+tensorflow-gpu                1.14.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                1.15.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                 2.0.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                 2.1.0      h0d30ee6_0  pkgs/main
+tensorflow-gpu                 2.2.0      h0d30ee6_0  pkgs/main
+
 (tf1) ~ ❯❯❯ conda install -n tf1 tensorflow-gpu=1.13.1
 Collecting package metadata (current_repodata.json): done                                                                                                     
 Solving environment: failed with initial frozen solve. Retrying with flexible solve.                                                                          

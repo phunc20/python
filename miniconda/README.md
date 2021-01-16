@@ -42,13 +42,32 @@
   tensorflow                     1.9.0 mkl_py36h6d6ce78_0  pkgs/main
   tensorflow                     1.9.0 mkl_py36h6d6ce78_1  pkgs/main
   ...
+  ~ ❯❯❯ conda search tensorflow-gpu
+  Loading channels: done
+  # Name                       Version           Build  Channel
+  tensorflow-gpu                 1.4.1               0  pkgs/main
+  tensorflow-gpu                 1.5.0               0  pkgs/main
+  tensorflow-gpu                 1.6.0               0  pkgs/main
+  tensorflow-gpu                 1.7.0               0  pkgs/main
+  tensorflow-gpu                 1.8.0      h7b35bdc_0  pkgs/main
+  tensorflow-gpu                 1.9.0      hf154084_0  pkgs/main
+  tensorflow-gpu                1.10.0      hf154084_0  pkgs/main
+  tensorflow-gpu                1.11.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                1.12.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                1.13.1      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                1.14.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                1.15.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                 2.0.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                 2.1.0      h0d30ee6_0  pkgs/main
+  tensorflow-gpu                 2.2.0      h0d30ee6_0  pkgs/main
   (py3.6) ~ ❯❯❯
   ```
-  - **`conda install -n py3.6 tensorflow=1.12.0`**
+  - **`conda install -n homl-1e tensorflow-gpu=1.13.1`**
 
 
 ## Cheatsheet
 ```bash
+# remove an env
 conda remove --name abc --all
 conda env remove --name pDL
 
