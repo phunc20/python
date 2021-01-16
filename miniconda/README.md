@@ -115,6 +115,17 @@ dependencies:
 ```
 
 
+## No `conda` command?
+The following works on Fedora:<br>
+Reading closely, when you install miniconda, there are guiding messages. For example, I have put my installation in `~/.config/`. Then the next command
+enables one to have `conda` command back.
+```bash
+eval "$(/home/phunc20/.config/miniconda3/bin/conda shell.bash hook)"
+```
+To permanently possessing the `conda` command, run a further command:
+```bash
+conda init
+```
 
 
 ### `(base)` by default or not
