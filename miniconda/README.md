@@ -84,10 +84,16 @@ conda create -n py3.6 python=3.6
 
 # search for packages
 conda search opencv
+
 # install a package  # Here, assume the env name is "tf2"
 conda install -n tf2 jupyterlab
 # Use -y in situations where you cannot confirm by typing into stdout, e.g. in a jupyter cell:
 conda install -n tf2 matplotlib -y
+
+# uninstall a package from a particular env
+conda remove -n tf2 matplotlib
+# uninstall a package from the current env
+conda remove matplotlib
 
 # export your env to share w/ others
 conda env export > environment.yml
