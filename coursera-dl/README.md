@@ -1,3 +1,6 @@
+## `coursera-dl` not working out of the box
+One cannot download coursera courses right after installing `pip install coursera-dl`. Instead,
+some configurations are needed:
 - Find the file `cookies.py` in the site package folder of your installed virtualenv for `coursera-dl`
   ```bash
   [phunc20@homography-x220t coursera-dl]$ workon coursera
@@ -18,3 +21,4 @@
   - `coursera-dl -u <email> -p <password> <coursename>`
     - e.g. `coursera-dl -u tungnv15@gmail.com -p passCuaTung julia-programming`
     - Don't use the course's url, i.e. don't `coursera-dl -u tungnv15@gmail.com -p passCuaTung https://www.coursera.org/learn/julia-programming`. Just the course name.
+- cf. [https://github.com/coursera-dl/coursera-dl/issues/702](https://github.com/coursera-dl/coursera-dl/issues/702) for more info.
