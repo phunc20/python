@@ -96,7 +96,11 @@ conda remove -n tf2 matplotlib
 conda remove matplotlib
 
 # export your env to share w/ others
+conda activate <env_name>
 conda env export > environment.yml
+
+# create a new env via an environment.yml file
+conda env create -f environment.yml
 
 # remove an env
 # either
