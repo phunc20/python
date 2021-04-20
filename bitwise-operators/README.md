@@ -32,6 +32,11 @@ Out[8]: 6
 are equally fast. Why was that? A little source code, maybe?
 
 
+## Left Shift `<<`
+`a << n` is like `a * (2**n)` for all non-negative integers `n`.
+- Don’t use the bit shift operators as a means of premature optimization in Python. You won’t see a difference in execution speed, but you’ll most definitely make your code less readable. This is because most compilers and interpreters today, including Python's, are quite capable of optimizing your code behind the scenes.
+
+
 ## `~`, i.e. Bitwise NOT
 ```
 In [38]: 7 + ~7

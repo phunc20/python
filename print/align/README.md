@@ -1,4 +1,28 @@
 
+### With `str`
+In formated strings, to pad a variable of type `str` with white spaces on the left, do
+**`f"{string:>7}"`**, which will pad `7` white spaces for the variable `string`. This can also
+be written using other syntaxes.
+
+- `"{:>7}".format(string)`
+- `"%7s" % string`
+
+```
+In [4]: str_len3 = "abc"; str_len4 = "wxyz"
+
+In [5]: print(f"{str_len3:>4}", f"{str_len4:>max(str_len3, str_len4)}", sep="\n")
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-5-05d72a72d588> in <module>
+----> 1 print(f"{str_len3:>4}", f"{str_len4:>max(str_len3, str_len4)}", sep="\n")
+
+ValueError: Invalid format specifier
+
+In [6]: print(f"{str_len3:>4}", f"{str_len4:>4}", sep="\n")
+ abc
+wxyz
+```
+
 
 ### With <code>float</code>
 just remember to count <b>the number of characters</b> right.
