@@ -1,3 +1,6 @@
 **/*trash*
 **/*corbeille*
 **/.ipynb_checkpoints
+
+# Some particular files/folders
+bitwise-operators/logical_shift_manully.jl
