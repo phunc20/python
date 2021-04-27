@@ -89,6 +89,11 @@ conda search opencv
 conda install -n tf2 jupyterlab
 # Use -y in situations where you cannot confirm by typing into stdout, e.g. in a jupyter cell:
 conda install -n tf2 matplotlib -y
+# install a package with a specific version instead of the latest one
+conda install -n tf2 tensorflow-gpu=2.1.0
+# install from another channel (the `-c` option), say, from conda-forge
+conda install -n tf2 nbdime -c conda-forge
+
 
 # uninstall a package from a particular env
 conda remove -n tf2 matplotlib
