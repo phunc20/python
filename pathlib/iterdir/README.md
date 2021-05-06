@@ -1,4 +1,4 @@
-<pre>
+```
 In [1]: from pathlib import Path
 
 In [2]: !pwd
@@ -34,4 +34,4 @@ Out[30]:
  PosixPath('/home/phunc20/samsung-SATA/datasets/food-on-table/gogi/00000002343000000'),
  PosixPath('/home/phunc20/samsung-SATA/datasets/food-on-table/gogi/00000002210000000'),
  PosixPath('/home/phunc20/samsung-SATA/datasets/food-on-table/gogi/00000002280000000')]
-</pre>
+```

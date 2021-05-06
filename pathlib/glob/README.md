@@ -1,4 +1,40 @@
 
+## `glob()` Non-Iteratively
+`glob()` grabs only matched filenames in the specified directory **non-iteratively**. Cf. the following example.
+
+`train_short_audio/` is a folder of the following structure, where each of its subfolders contains `*.ogg` files only `*.ogg` files only.
+```
+In [1]: !pwd
+/home/phunc20/datasets/kaggle/birdclef-2021/train_short_audio
+
+In [2]: ls
+acafly/   bkhgro/   butsal1/  compot1/  gockin/   killde/   normoc/   rawwre1/  sancra/   tenwar/   whwbec1/
+acowoo/   bkmtou1/  buwtea/   comrav/   gocspa/   labwoo/   norpar/   rcatan1/  sander/   thbeup1/  whwdov/
+aldfly/   bknsti/   cacgoo1/  comyel/   goftyr1/  larspa/   norsho/   rebnut/   savspa/   thbkin/   wilfly/
+ameavo/   blbgra1/  cacwre/   coohaw/   gohque1/  laufal1/  norwat/   rebsap/   saypho/   thswar1/  willet1/
+amecro/   blbthr1/  calqua/   cotfly1/  goowoo1/  laugul/   nrwswa/   rebwoo/   scamac1/  towsol/   wilsni1/
+...
+```
+If we let `folder` be the `Path` object pointing to this directory, then we have
+```
+In [3]: from pathlib import Path
+
+In [4]: folder = Path.cwd()
+
+In [5]: list(folder.glob("*.ogg"))
+Out[5]: []
+
+In [6]: list((folder / "westan").glob("*.ogg"))[:3]
+Out[6]:
+[PosixPath('/home/phunc20/datasets/kaggle/birdclef-2021/train_short_audio/westan/XC559251.ogg'),
+ PosixPath('/home/phunc20/datasets/kaggle/birdclef-2021/train_short_audio/westan/XC441368.ogg'),
+ PosixPath('/home/phunc20/datasets/kaggle/birdclef-2021/train_short_audio/westan/XC146191.ogg')]
+
+```
+
+
+
+
 ## Regex in <code>glob()</code>
 Regex in <code>glob()</code> is <b>different</b> from regex in <code>grep</code>, e.g. the dollar sign (<b><code>$</code></b>) does not represent <b>End Of Line</b>, neither does <code><b>^</b></code> represent <b>Begin Of Line</b>.
 
