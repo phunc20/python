@@ -1,3 +1,10 @@
+## Methods
+- `s.add(x)`
+
+
+
+
+
 ## What Kind of Object Can Figure in A Set/Dictionary-Key?
 ```
 In [1]: S = set()
