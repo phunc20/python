@@ -1,6 +1,8 @@
-**/*trash*
-**/*corbeille*
-**/.ipynb_checkpoints
+trash.*
+corbeille/
+.ipynb_checkpoints/
+
+__pycache__/
 
 # Some particular files/folders
 bitwise-operators/logical_shift_manully.jl
