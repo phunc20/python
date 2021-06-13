@@ -11,6 +11,13 @@ Usual `matplotlib` settings are not perfectly suited for such dark mode. The fol
 free to copy and paste it :)
 
 ```python
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+mpl.rc('axes', labelsize=14)
+mpl.rc('xtick', labelsize=12)
+mpl.rc('ytick', labelsize=12)
+
 DARK_READER = True
 if DARK_READER:
     plt.rcParams.update({
