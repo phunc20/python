@@ -27,6 +27,7 @@ if DARK_READER:
         "axes.facecolor": "black",
         "axes.edgecolor": "lightgray",
         "axes.labelcolor": "white",
+        "axes.titlecolor": "white",
         "xtick.color": "white",
         "ytick.color": "white",
         "grid.color": "lightgray",
