@@ -6,3 +6,4 @@ __pycache__/
 
 # Some particular files/folders
 bitwise-operators/logical_shift_manully.jl
+bitwise-operators/example.bmp
