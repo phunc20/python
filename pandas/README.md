@@ -1,4 +1,15 @@
 
+## Rename The Columns/Rows
+- Use the `rename` method. Note that by default it creates a new DataFrame instead of modifying in-place.
+  ```python
+  df.rename(columns={
+      "old_col_name1": "new_col_name1"
+      "old_col_name2": "new_col_name2"
+      "old_col_name3": "new_col_name3"
+  })
+  ```
+
+
 ## `df.describe()`
 This method allows us to quickly inspect
 

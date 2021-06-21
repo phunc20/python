@@ -35,6 +35,9 @@ In [50]: with open(path_imagefile, "rb") as f:
 In [51]: content
 Out[51]: b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00\xff\xdb\x00C\x00\x08\x06\x06\x07\x06...'
 
+In [56]: type(content)
+Out[56]: bytes
+
 In [52]: with open(path_textfile, "r") as f:
     ...:     content = f.read()
     ...:
@@ -42,12 +45,17 @@ In [52]: with open(path_textfile, "r") as f:
 In [53]: content
 Out[53]: '4.0K\tanimal.sql\n4.0K\tDownloads\n4.0K\tsd-card\n8.0K\tDesktop\n12K\tArduino\n56K\thw2.jl\n364K\tscikit_learn_data\n596K\ttodo\n648K\tbrowser-tabs\n11M\tgo\n27M\tpictures\n79M\tmusic\n457M\tjobs\n1.8G\tcorbeille\n2.5G\tbiblio\n6.6G\tgit-repos\n7.6G\tcell-phones\n21G\tdatasets\n24G\tmooc\n38G\tdownloads\n207G\tvideos\n'
 
+In [56]: type(content)
+Out[56]: str
+
 In [54]: with open(path_textfile, "br") as f:
     ...:     content = f.read()
-    ...:
 
 In [55]: content
 Out[55]: b'4.0K\tanimal.sql\n4.0K\tDownloads\n4.0K\tsd-card\n8.0K\tDesktop\n12K\tArduino\n56K\thw2.jl\n364K\tscikit_learn_data\n596K\ttodo\n648K\tbrowser-tabs\n11M\tgo\n27M\tpictures\n79M\tmusic\n457M\tjobs\n1.8G\tcorbeille\n2.5G\tbiblio\n6.6G\tgit-repos\n7.6G\tcell-phones\n21G\tdatasets\n24G\tmooc\n38G\tdownloads\n207G\tvideos\n'
+
+In [56]: type(content)
+Out[56]: bytes
 ```
 
 
