@@ -116,6 +116,8 @@ conda env remove --name myenv
 conda config --set auto_activate_base false
 conda config --set auto_activate_base true
 
+# list all installed packages under a certain env, e.g. env named `oft`
+conda list -n oft
 # To check if a certain package is installed under some env
 # e.g. check for the jedi package in env "homl1e"
 ~/.../phunc20/python/miniconda ❯❯❯ conda list -n homl1e | grep jedi
