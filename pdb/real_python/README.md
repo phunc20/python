@@ -8,11 +8,11 @@ I have designed an example to run Python debugger. Note that `breakpoint()` is a
   > /home/phunc20/git-repos/phunc20/python/pdb/real_python/main.py(10)<module>()
   -> determinant = random.randint(1,2)
   (Pdb) list
-  5     if __name__ == "__main__":
-  6         python_version = sys.version.split(" ")[0]
-  7         print(f"Python version = {python_version}")
-  8         breakpt = breakpoint if python_version >= "3.7" else pdb.set_trace
-  9         breakpt()
+   5     if __name__ == "__main__":
+   6         python_version = sys.version.split(" ")[0]
+   7         print(f"Python version = {python_version}")
+   8         breakpt = breakpoint if python_version >= "3.7" else pdb.set_trace
+   9         breakpt()
   10  ->     determinant = random.randint(1,2)
   11         if determinant == 1:
   12             breakpt()
