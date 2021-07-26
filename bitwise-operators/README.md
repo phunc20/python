@@ -108,4 +108,5 @@ Out[32]: 11
 ```
 
 
-
+## Notes
+- Python's sign bit doesn't have a fixed position; there is no sign bit at all in Python.
