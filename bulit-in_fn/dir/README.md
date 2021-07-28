@@ -4,7 +4,7 @@
 The following convenience function might prove to be useful sometimes.
 
 ```python
-def non_dunder(obj):
-    return [s for s in dir(obj) if not s.startswith("__")]
-
+def no_dunder(obj, strict=False):
+    prefix = "__" if strict else "_"
+    return [s for s in dir(obj) if not s.startswith(prefix)]
 ```
