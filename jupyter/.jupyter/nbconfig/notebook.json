@@ -1,0 +1,16 @@
+{
+  "Notebook": {
+    "Header": false,
+    "Toolbar": true
+  },
+  "CodeCell": {
+    "cm_config": {
+      "autoCloseBrackets": false
+    }
+  },
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": false
+    }
+  }
+}
