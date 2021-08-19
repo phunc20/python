@@ -1,4 +1,4 @@
-
+- <https://stackoverflow.com/questions/13733552/logger-configuration-to-log-to-file-and-print-to-stdout>
 ```bash
 (oft) ~/.../python/logging/log_file_and_stderr$ ls
 default.py  README.md  stderr.py  stdout.py

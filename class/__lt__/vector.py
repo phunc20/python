@@ -27,6 +27,13 @@ class Vertex():
             diff_x = another.x - self.x
             return diff_x > Vertex.proximity_px
 
+    def __add__(self, another):
+        return Vertex(
+            self.x + another.x,
+            self.y + another.y,
+            f"{self.name} + {another.name}",
+        )
+
 if __name__ == "__main__":
     A = Coord(30, 100, "A")
     B = Coord(40, 101, "B")
