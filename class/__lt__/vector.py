@@ -9,6 +9,7 @@ class Coord():
 
 class Vertex():
     proximity_px = 3
+
     def __init__(self, x, y, name):
         self.x = x
         self.y = y
@@ -33,7 +34,7 @@ class Vertex():
             self.y + another.y,
             f"{self.name} + {another.name}",
         )
-    
+
     #def __radd__(self, another):
     #    """
     #    __radd__ probably stands for "Reduce Add".
@@ -50,3 +51,6 @@ class Vertex():
                 another*self.y,
                 f"({another}){self.name}"
             )
+
+    def __rmul__(self, another):
+        return self * another
