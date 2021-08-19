@@ -3,6 +3,7 @@ corbeille/
 .ipynb_checkpoints/
 
 __pycache__/
+*.log
 
 # Some particular files/folders
 bitwise-operators/logical_shift_manully.jl
