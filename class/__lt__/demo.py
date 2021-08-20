@@ -1,4 +1,4 @@
-from vector import Coord, Vertex
+from vector import Coord, Point
 
 if __name__ == "__main__":
     A = Coord(30, 100, "A")
@@ -21,10 +21,10 @@ if __name__ == "__main__":
     print(sorted("bdac", key=lambda char: L[ord(char) - ord('a')][::-1]))
 
     print()
-    P = Vertex(30, 100, "P")
-    Q = Vertex(40, 101, "Q")
-    R = Vertex(28, 700, "R")
-    S = Vertex(39, 698, "S")
+    P = Point(30, 100, "P")
+    Q = Point(40, 101, "Q")
+    R = Point(28, 700, "R")
+    S = Point(39, 698, "S")
     try:
         print(f"sorted([Q, S, P, R]) = {sorted([Q, S, P, R])}")
     except TypeError as e:

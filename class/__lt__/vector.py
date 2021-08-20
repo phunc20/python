@@ -7,7 +7,7 @@ class Coord():
     def __repr__(self):
         return self.name
 
-class Vertex():
+class Point():
     proximity_px = 3
 
     def __init__(self, x, y, name):
@@ -20,16 +20,16 @@ class Vertex():
 
     def __lt__(self, another):
         diff_y = another.y - self.y
-        if  diff_y > Vertex.proximity_px:
+        if  diff_y > Point.proximity_px:
             return True
-        elif -diff_y > Vertex.proximity_px:
+        elif -diff_y > Point.proximity_px:
             return False
         else:
             diff_x = another.x - self.x
-            return diff_x > Vertex.proximity_px
+            return diff_x > Point.proximity_px
 
     def __add__(self, another):
-        return Vertex(
+        return Point(
             self.x + another.x,
             self.y + another.y,
             f"{self.name} + {another.name}",
@@ -46,7 +46,7 @@ class Vertex():
 
     def __mul__(self, another):
         if isinstance(another, float) or isinstance(another, int):
-            return Vertex(
+            return Point(
                 another*self.x,
                 another*self.y,
                 f"({another}){self.name}"
