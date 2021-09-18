@@ -31,3 +31,7 @@ Archive:  日本やベトナム.txt.zip
 ```
 
 Cf. `./unzip.py` for more details.
+
+**Rmk.** The above situation seems to only take place when one `touch` a Japanese-named file from MacOS, and then
+tries to unzip it (in all Linux, Windows and MacOS) using the `naive_unzip.py` script.
+I haven't figured out the reason, but I guess that it has sth to do with the encoding of Japanese in MacOS.

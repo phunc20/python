@@ -1,4 +1,5 @@
-> Chinese and Japanese characters cost usually three bytes in UTF-8 encoding.
+> Chinese and Japanese character costs usually `3` bytes in UTF-8 encoding, whereas each English character only
+> costs `1` bytes ($16\cdot 16 = 256 = 2^8$).
 
 Let's verify this.
 
@@ -24,4 +25,27 @@ In [7]: for char in discontinuous:
    ...:
 
 In [8]:
+```
+
+
+In UTF-8,
+
+- characters, like `"ç", "ê"`, costs `2` bytes each
+- Japanese kanji/katagana/hiragana, regardless of being full-width or half-width, costs `3` bytes each
+
+```
+In [8]: " ".encode("utf-8")
+Out[8]: b' '
+
+In [9]: "　".encode("utf-8")
+Out[9]: b'\xe3\x80\x80'
+
+In [10]: "Essaye le français peut-être.".encode("utf-8")
+Out[10]: b'Essaye le fran\xc3\xa7ais peut-\xc3\xaatre.'
+
+In [11]: "ｱｲｳｴｵ".encode("utf-8")
+Out[11]: b'\xef\xbd\xb1\xef\xbd\xb2\xef\xbd\xb3\xef\xbd\xb4\xef\xbd\xb5'
+
+In [12]: len(_)
+Out[12]: 15
 ```
