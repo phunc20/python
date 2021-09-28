@@ -5,7 +5,7 @@ cf. [https://matplotlib.org/gallery/style_sheets/dark_background.html#sphx-glr-g
 
 
 ## Dark Reader
-Some people like to read documents in dark/night mode, even with jupyter notebook. The `Dark Reader` from google add-ons is one such tools.
+Some people like to read documents in dark/night mode, even with jupyter notebook. The `Dark Reader` from google add-ons is one such tool.
 
 Usual `matplotlib` settings are not perfectly suited for such dark mode. The following code snippet can help to improve this respect. Feel
 free to copy and paste it :)
@@ -38,5 +38,22 @@ if DARK_READER:
     })
 ```
 
+There seems to exist not only one way to do this:
+```python
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 
+mpl.rcParams["grid.color"] = "w"
+mpl.rcParams["axes.facecolor"] = "w"
+mpl.rcParams["axes.edgecolor"] = "w"
+mpl.rcParams["axes.titlecolor"] = "w"
+mpl.rcParams["axes.labelcolor"] = "w"
+mpl.rcParams["text.color"] = "w"
+mpl.rcParams["xtick.color"] = "w"
+mpl.rcParams["ytick.color"] = "w"
 
+mpl.rcParams["axes.facecolor"] = "k"
+mpl.rcParams["figure.facecolor"] = "k"
+mpl.rcParams["figure.figsize"] = (8,6)
+mpl.rcParams["axes.grid"] = False
+```
