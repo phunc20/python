@@ -1,3 +1,4 @@
+import argparse
 import json
 from pathlib import Path
 
@@ -10,14 +11,10 @@ def save_lisible(filename):
 
 
 if __name__ == "__main__":
-    D = {"身高": 175, "體重": 85}
-    with open(f"body.json", "w") as f:
-        json.dump(D, f)
-    print(f"cat body.json")
-    with open(f"body.json", "r") as f:
-        print(f.read())
-    save_lisible("body.json")
-    print(f"cat body_lisible.json")
-    with open(f"body_lisible.json", "r") as f:
-        print(f.read())
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "path_json",
+        help="path to a JSON file",
+    )
+    args = parser.parse_args()
+    save_lisible(args.path_json)
