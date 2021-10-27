@@ -4,13 +4,13 @@
 In [1]: ord("お")
 Out[1]: 12362
 
-In [2]: [chr(code) for code in range(12353, 12500)]                            
-Out[2]: 
+In [2]: [chr(code) for code in range(12353, 12500)]
+Out[2]:
 ['ぁ',
  'あ',
  'ぃ',
  'い',
- 'ぅ',  
+ 'ぅ',
  'う',
  'ぇ',
  'え',
@@ -26,17 +26,32 @@ Out[2]:
 ```
 
 
-## Dakuten and handakuten
+## 濁点と半濁点 (Dakuten and Handakuten)
 <https://github.com/JeromeLefebvre/JapaneseCounting/issues/3>
 
 It seems that
 - Dakuten (i.e. 点々, `'ﾞ'`) has unicode `"\u3099"`
-- Handakuten (i.e. 丸, `"ﾟ"`) has unicode`"\u3100"`
+- Handakuten (i.e. 丸, `"ﾟ"`) has unicode`"\u309a"`
   ```
   In [54]: [chr(code) for code in range(12438, 12446)]
   Out[54]: ['ゖ', '\u3097', '\u3098', '゙', '゚', '゛', '゜', 'ゝ']
   ```
+- `"\u309b"` and `"\u309c"` seems to be inappropriate (han)dakuten for most situations:
+  ```
+  In [159]: "\u309b"
+  Out[159]: '゛'
+  
+  In [160]: "は" + "\u309b"
+  Out[160]: 'は゛'
+  
+  In [161]: unicodedata.normalize("NFC", "は" + "\u309b")
+  Out[161]: 'は゛'
+  
+  In [162]: len(unicodedata.normalize("NFC", "は" + "\u309b"))
+  Out[162]: 2
+  ```
 
+Below is an example which might help quickly grasp the essentials.
 ```python
 In [1]: ba = "は" + "\u3099"
 
@@ -76,3 +91,6 @@ Recall that
 
 - `"NFC"` stands for **Normal Form Compose**
 - `"NFD"` stands for **Normal Form Decompose**
+
+
+## 全角と半角 (Zenkaku and Hankaku)
