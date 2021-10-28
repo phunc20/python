@@ -92,5 +92,11 @@ Recall that
 - `"NFC"` stands for **Normal Form Compose**
 - `"NFD"` stands for **Normal Form Decompose**
 
+There are two Python scripts in `pwd`, namely `tenten_maru.py` and `dakuten.py`, that we
+write to illustrate how to convert btw dakuten, handakuten and no-mark.
+
+- `tenten_maru.py` will add dakuten and handakuten even to those hiragana or katakana that are illegitimate to bear dakuten or handakuten. `tenten_maru.py` uses `unicodedata`, in particular, the function `normalize()`
+- `dakuten.py`, on the other hand, takes into consideration the legitimacy. Besides, `dakuten.py` only uses `ord()` and `chr()` and not `unicodedata`
+
 
 ## 全角と半角 (Zenkaku and Hankaku)
