@@ -40,6 +40,8 @@ def has_tenten_maru(char, nfd=None):
             return False
 
 def flip(string, target=tenten):
+    if target not in (tenten, maru):
+        raise Exception("target arg of flip() should be in (tenten, maru)")
     flipped = [""] * len(string)
     for i, c in enumerate(string):
         if not is_hira(c) and not is_kana(c):
@@ -57,6 +59,22 @@ def flip(string, target=tenten):
         flipped[i] = c_flipped
     return "".join(flipped)
 
+def convert(string, target=tenten):
+    if target not in (tenten, maru, ""):
+        raise Exception("target arg of convert() should be in (tenten, maru, \"\")")
+    converted = [""] * len(string)
+    for i, c in enumerate(string):
+        if not is_hira(c) and not is_kana(c):
+            c_converted = c
+        else:
+            nfd = unicodedata.normalize("NFD", c)
+            if target == "":
+                c_converted = nfd[0]
+            else:
+                c_converted = unicodedata.normalize("NFC", nfd[0] + target)
+        converted[i] = c_converted
+    return "".join(converted)
+
 
 if __name__ == "__main__":
     #s = "HLAC特徴を用いた学習型汎用認識"
@@ -65,3 +83,8 @@ if __name__ == "__main__":
     print(f"flip(s, target=tenten) = {flip(s, target=tenten)}")
     print(f"flip(s, target=maru)   = {flip(s, target=maru)}")
     print(f"flip(flip(s), maru)    = {flip(flip(s), maru)}")
+    print()
+
+    print(f"s                         = {s}")
+    print(f"convert(s, target=tenten) = {convert(s, target=tenten)}")
+    print(f"convert(s, target=maru)   = {convert(s, target=maru)}")
