@@ -5,6 +5,7 @@ So far the best way I know of is the following
 from PIL import Image
 from PIL.ExifTags import TAGS
 from PIL.ImageOps import exif_transpose
+from typing import Union
 
 INV_TAGS = {info: id_ for id_, info in TAGS.items()}
 def pil_loader(path: Union[str, Path]):
