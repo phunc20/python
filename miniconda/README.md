@@ -84,6 +84,8 @@ conda create -n py3.6 python=3.6
 
 # search for packages
 conda search opencv
+# search for available Python versions
+conda search --full-name python
 
 # install a package  # Here, assume the env name is "tf2"
 conda install -n tf2 jupyterlab
