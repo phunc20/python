@@ -40,8 +40,8 @@ done
 In [2]: from transformers import AutoModel
 
 In [3]: model = AutoModel.from_pretrained("bert-base-cased")
-Downloading: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 570/570 [00:00<00:00, 350kB/s]
-Downloading: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 416M/416M [01:17<00:00, 5.61MB/s]
+Downloading: 100%|████████████████████████████████████████████████████████████| 570/570 [00:00<00:00, 350kB/s]
+Downloading: 100%|██████████████████████████████████████████████████████████| 416M/416M [01:17<00:00, 5.61MB/s]
 Some weights of the model checkpoint at bert-base-cased were not used when initializing BertModel: ['cls.seq_relationship.weight', 'cls.predictions.decoder.weight', 'cls.predictions.transform.dense.weight', 'cls.seq_relationship.bias', 'cls.predictions.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias']
 - This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
@@ -92,10 +92,10 @@ In [56]: encoded_sequences
 Out[56]: [[101, 8667, 106, 102], [101, 13297, 119, 102], [101, 8835, 106, 102]]
 ```
 
-**(?)** How come there are four integer IDs for each of `"Hello!", "Cool.", "Nice!"`?
+**(?)** How come there are four integer IDs for each of `"Hello!", "Cool.", "Nice!"`?<br>
 **(R)** It turned out that this is BERT's encoding and
 
-- `101` $\mapsto$ `[CLS]`
+- `101` $`\mapsto`$ `[CLS]`
 - `8667` $\mapsto$ `Hello`, `13297` $\mapsto$ `Cool`, `8835` $\mapsto$ `Nice`
 - `106` $\mapsto$ `!`, `119` $\mapsto$ `.`
 - `102` $\mapsto$ `[SEP]`
