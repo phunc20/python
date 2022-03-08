@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 if __name__ == "__main__":
-    path_xlsx = Path("colors.xlsx")
+    path_xlsx = Path("trash.xlsx")
     workbook = xlsxwriter.Workbook(path_xlsx)
     worksheets = []
     worksheets.append(workbook.add_worksheet("pagina_0"))
@@ -21,6 +21,14 @@ if __name__ == "__main__":
     worksheets[0].write(0, 1, "Aurelien", my_bg_gray)
     worksheets[0].write(1, 0, "Caziani", font_green_bold)
     worksheets[0].write(1, 1, "Geron", my_font_green_bold)
+
+    # Q: incremental, ok?
+    # A: No, the latter will overwrite the former.
+    font_bold = workbook.add_format({
+        "bold": True,
+    })
+    worksheets[0].write(0, 2, "", my_bg_gray)
+    worksheets[0].write(0, 2, "Ari", font_bold)
+    worksheets[0].write(1, 2, "Seff")
+
     workbook.close()
-
-
