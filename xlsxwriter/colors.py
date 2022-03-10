@@ -31,4 +31,27 @@ if __name__ == "__main__":
     worksheets[0].write(0, 2, "Ari", font_bold)
     worksheets[0].write(1, 2, "Seff")
 
+    # Q: write_rich_string bg_color?
+    # A: Yes, it's possible. Simply put the cell format as the last input arg of write_rich_string()
+    #    for more info, cf. https://xlsxwriter.readthedocs.io/worksheet.html#worksheet-write-rich-string
+    my_font_blue = workbook.add_format({
+        "font_color": "blue",
+        "bg_color": "gray",
+    })
+    my_font_black = workbook.add_format({
+        "font_color": "black",
+        "bg_color": "gray",
+    })
+    my_font_red = workbook.add_format({
+        "font_color": "red",
+        "bg_color": "gray",
+    })
+    rich_string = [my_font_blue, "blue", my_font_black, "black", my_font_red, "red"]
+    rich_string2 = [my_font_blue, "blue", my_font_black, "black", my_font_red, "red", bg_gray]
+    worksheets[0].write_rich_string(3, 0, *rich_string)
+    worksheets[0].write_rich_string(4, 0, *rich_string)
+    worksheets[0].write_rich_string(5, 0, *rich_string2)
+    worksheets[0].set_row(4, None, bg_gray)
+
+
     workbook.close()
