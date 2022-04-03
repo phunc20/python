@@ -114,4 +114,78 @@ Out[5]:
 For more pipelines, cf. <https://huggingface.co/docs/transformers/main_classes/pipelines>
 
 
+## Mask Filling
+
+```python
+In [1]: from transformers import pipeline
+
+In [2]: unmasker = pipeline("fill-mask")
+   ...:
+No model was supplied, defaulted to distilroberta-base (https://huggingface.co/distilroberta-base)
+Downloading: 100%|█████████████████████████████████████████████████████████████████| 480/480 [00:00<00:00, 323kB/s]
+Downloading: 100%|██████████████████████████████████████████████████████████████| 316M/316M [00:59<00:00, 5.56MB/s]
+Downloading: 100%|███████████████████████████████████████████████████████████████| 878k/878k [00:01<00:00, 521kB/s]
+Downloading: 100%|███████████████████████████████████████████████████████████████| 446k/446k [00:01<00:00, 378kB/s]
+Downloading: 100%|█████████████████████████████████████████████████████████████| 1.29M/1.29M [00:02<00:00, 625kB/s]
+
+In [5]: unmasker("This course will teach you all about <mask> models.", top_k=5)
+Out[5]:
+[{'score': 0.19619803130626678,
+  'token': 30412,
+  'token_str': ' mathematical',
+  'sequence': 'This course will teach you all about mathematical models.'},
+ {'score': 0.040527231991291046,
+  'token': 38163,
+  'token_str': ' computational',
+  'sequence': 'This course will teach you all about computational models.'},
+ {'score': 0.03301785886287689,
+  'token': 27930,
+  'token_str': ' predictive',
+  'sequence': 'This course will teach you all about predictive models.'},
+ {'score': 0.031941454857587814,
+  'token': 745,
+  'token_str': ' building',
+  'sequence': 'This course will teach you all about building models.'},
+ {'score': 0.024522870779037476,
+  'token': 3034,
+  'token_str': ' computer',
+  'sequence': 'This course will teach you all about computer models.'}]
+```
+
+What if we have two masks in the same sentence?
+```python
+In [10]: unmasker("This course will <mask> you all about <mask> models.", top_k=3)
+Out[10]:
+[[{'score': 0.8891226649284363,
+   'token': 6396,
+   'token_str': ' teach',
+   'sequence': '<s>This course will teach you all about<mask> models.</s>'},
+  {'score': 0.08693908900022507,
+   'token': 1137,
+   'token_str': ' tell',
+   'sequence': '<s>This course will tell you all about<mask> models.</s>'},
+  {'score': 0.0075994497165083885,
+   'token': 311,
+   'token_str': ' show',
+   'sequence': '<s>This course will show you all about<mask> models.</s>'}],
+ [{'score': 0.05115402117371559,
+   'token': 8568,
+   'token_str': ' automotive',
+   'sequence': '<s>This course will<mask> you all about automotive models.</s>'},
+  {'score': 0.017702210694551468,
+   'token': 745,
+   'token_str': ' building',
+   'sequence': '<s>This course will<mask> you all about building models.</s>'},
+  {'score': 0.016906119883060455,
+   'token': 3034,
+   'token_str': ' computer',
+   'sequence': '<s>This course will<mask> you all about computer models.</s>'}]]
+```
+
+The mask token. It seems that
+- for `roberta`, the mask token is `<mask>`
+- for `bert`, it's `[MASK]`
+
+But let's see what would happen if we mix and misuse them.
+
 ## Feature Extraction

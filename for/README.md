@@ -132,3 +132,83 @@ In [18]: for n in range(2, 10):
 8 equals 2 * 4
 9 equals 3 * 3
 ```
+
+
+## Combining Nested `for` Loops into One Single Loop
+Julia allows code like
+```julia
+julia> for a = 1:2, b = 1:3, c = 1:2
+           println((a, b, c))
+       end
+(1, 1, 1)
+(1, 1, 2)
+(1, 2, 1)
+(1, 2, 2)
+(1, 3, 1)
+(1, 3, 2)
+(2, 1, 1)
+(2, 1, 2)
+(2, 2, 1)
+(2, 2, 2)
+(2, 3, 1)
+(2, 3, 2)
+```
+
+In Python, the exact same syntax above won't work. However, Python
+can achieve the same thing using its own syntax.
+
+Firstly, let's observe the following.
+```python
+In [22]: for i in range(1,3), j in range(3,5):
+    ...:     print((i,j))
+    ...:
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Input In [22], in <cell line: 1>()
+----> 1 for i in range(1,3), j in range(3,5):
+      2     print((i,j))
+
+NameError: name 'j' is not defined
+
+In [23]: [(i,j) for i in range(1,3), j in range(3,5)]
+  Input In [23]
+    [(i,j) for i in range(1,3), j in range(3,5)]
+                              ^
+SyntaxError: invalid syntax
+
+
+In [24]: [(i,j) for i in range(1,3) for j in range(3,5)]
+Out[24]: [(1, 3), (1, 4), (2, 3), (2, 4)]
+
+In [25]: for i in range(1,3) for j in range(3,5):
+    ...:     print((i,j))
+    ...:
+  Input In [25]
+    for i in range(1,3) for j in range(3,5):
+                        ^
+SyntaxError: invalid syntax
+```
+So we see that
+
+- list comprehension allows easy combination of for loops
+- combined for loops cannot easily be done without the help of special functions
+  ```python
+  In [26]: from itertools import product
+      ...:
+      ...: for a, b, c in product(range(1, 3), range(1, 4), range(1, 3)):
+      ...:     print((a, b, c))
+      ...:
+  (1, 1, 1)
+  (1, 1, 2)
+  (1, 2, 1)
+  (1, 2, 2)
+  (1, 3, 1)
+  (1, 3, 2)
+  (2, 1, 1)
+  (2, 1, 2)
+  (2, 2, 1)
+  (2, 2, 2)
+  (2, 3, 1)
+  (2, 3, 2)
+  ```
+
