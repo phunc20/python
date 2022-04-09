@@ -56,3 +56,34 @@ Out[7]: <tf.Variable 'Variable:0' shape=() dtype=float32, numpy=-0.2458669>
 
 We are moving in the correct direction.
 
+Therefore, what `optimizer.apply_gradients([(grad0, x0)])` does is like updating
+`x0 -= eta * grad0`. As a consequence, we are always expected to transform
+our problems into a minimization problem (instead of a maximization one).
+Otherwise, `tf` would not know what function it is dealing with, and with
+a function that is not bounded below, it will keep going downwards indefinitely.
+```python
+In [8]: import tensorflow as tf
+   ...: from tensorflow import keras
+   ...:
+   ...: optimizer = keras.optimizers.Adam(learning_rate=1)
+   ...:
+   ...: x0 = tf.Variable(1.)
+   ...: n_steps = 3_000
+   ...: print_interval = 500
+   ...: for i in range(1, n_steps+1):
+   ...:     with tf.GradientTape() as tape:
+   ...:         y0 = x0
+   ...:     grad0 = tape.gradient(y0, x0)
+   ...:     optimizer.apply_gradients([(grad0, x0)])
+   ...:     if i % print_interval == 1:
+   ...:         print(f"(step {i:03d}) x0 = {x0.numpy()}")
+   ...: print(f"(step {i:03d}) x0 = {x0.numpy()}")
+   ...:
+(step 001) x0 = 3.159046173095703e-06
+(step 501) x0 = -499.99993896484375
+(step 1001) x0 = -999.9999389648438
+(step 1501) x0 = -1499.9998779296875
+(step 2001) x0 = -1999.9998779296875
+(step 2501) x0 = -2499.999755859375
+(step 3000) x0 = -2998.999755859375
+```
