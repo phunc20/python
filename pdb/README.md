@@ -1,6 +1,11 @@
 
 
 ## Useful Ones
+- post-mortem (死後): Sometimes you may want to debug and know the values of a few variables, **after** your
+  program breaks. A convenient way to do this is, say, the script you want to get executed being named `eval.py`,
+  ```bash
+  python -m ipdb eval.py
+  ```
 - `pp` pretty print. Note how long lists get more organized printing when using `pp`.
   ```python
   (Pdb) pp os.path.sys.path
