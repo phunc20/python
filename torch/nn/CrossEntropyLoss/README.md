@@ -47,6 +47,6 @@ This leaves us with two options
 1. `weight = torch.Tensor([1e+3] + [1]*(C-1))`
     - This will penalize more heavily the cases when the true class is of index `0`. That is to say, when the true class of an instance is `0`, but one labels it non-zero, then one'd get a big punishment.
 
-(**Rmk.** PyTorch requires `weight` to be of type `torch.Tensor`.)
+(**Rmk.** PyTorch requires `weight` to be of type `torch.Tensor`. Moreover, if one trains one's model on GPU(s), then this `weight` tensor should be placed on the right GPU; otherwise, an exception will take place.)
 
 Based on the above analysis, in the given case where index `0` is overly represented, we should probably choose the first one, i.e. `weight = torch.Tensor([1e-3] + [1]*(C-1))`. It is like we weigh the minority labels heavier than the majority labels. Or, in yet another term, we weigh the classes by the inverse of their frequencies.
