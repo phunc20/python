@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 
-
 label_list = [
     "rabbit",
     "bird",
@@ -69,8 +68,10 @@ row_sums = conf_mx.sum(axis=1, keepdims=True)
 row_sums[row_sums == 0] = 1
 rel_err = conf_mx / row_sums
 # making the diagonal visually standout when there are many labels
-#np.fill_diagonal(rel_err, 1)
 np.fill_diagonal(rel_err, 0)
+#brightest = 1
+brightest = rel_err.max()
+np.fill_diagonal(rel_err, brightest)
 fig_rel_err = conf_mx_fig(rel_err, label_list, "Relative Error")
 
 plt.show()
