@@ -37,3 +37,28 @@ Testing `in` a `list` seems to be a simple `for` loop test, so when the element 
 lies around the end of a long list, it could take long to test `in`. And when the element
 does not exist in the list, Python will have to run through the entire list to test `in`.
 
+- `in` with `str`
+  ```python
+  In [3]: def begin_by(s, beginning):
+     ...:     if len(s) < len(beginning):
+     ...:         return False
+     ...:     else:
+     ...:         return s[:len(beginning)] == beginning
+     ...: 
+     ...: L = ["nước mắt nhân tạo", "nước mắm", "nước ngọt"]
+     ...: %timeit "nước ngọt" in L
+     ...: %timeit "nước" in "nước ngọt"
+     ...: 
+     ...: %timeit "phở bò" in L
+     ...: %timeit "nước" in "phở bò"
+     ...: 
+     ...: %timeit begin_by("phở bò", "nước")
+     ...: %timeit begin_by("nước mắm", "nước")
+     ...: 
+  71.7 ns ± 0.823 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+  30.9 ns ± 0.136 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+  61.7 ns ± 0.241 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+  30.5 ns ± 0.0998 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+  303 ns ± 7.48 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+  315 ns ± 2.6 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+  ```
