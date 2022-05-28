@@ -1,3 +1,9 @@
+## Installation
+1. Go download the installation shell script from <https://docs.conda.io/en/latest/miniconda.html> suitable for your OS
+1. Check its sha256sum, say, by `diff <(echo <the_provided_sum>) <(sha256sum <downloaded_miniconda.sh> | awk '{ print $1 }')`
+1. Install by running `sh <downloaded_miniconda.sh>`
+
+
 ## Troubleshoot
 - How to specify a package's installed version? Furthermore, when one version has more than one build, how to specify the one you want to install?
   ```bash
