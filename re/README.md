@@ -1,10 +1,10 @@
 ### Why using raw strings to specify regex?
 Let's first look at the following example.
 ```python
-In [28]: s = "This \\n is not a new line character but a backslash with an n"
+In [28]: s = "This \\n is not a new line character but two backslash followed by an n"
 
 In [29]: print(s)
-This \n is not a new line character but a backslash with an n
+This \n is not a new line character but two backslashes followed by an n
 
 In [30]: re.findall(r"\n", s)
 Out[30]: []
