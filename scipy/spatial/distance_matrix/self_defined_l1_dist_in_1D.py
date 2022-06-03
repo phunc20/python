@@ -59,6 +59,19 @@ y1s = np.random.randint(low=0, high=1024, size=(n_cols,1))
 distance_matrix(y0s, y1s)
 
 """
+!!!
+In [8]: np.array_equal(distance_matrix(y0s, y1s), dist_mx(y0s, y1s).astype(np.float64))
+Out[8]: False
+
+In [9]: np.array_equiv(distance_matrix(y0s, y1s), dist_mx(y0s, y1s).astype(np.float64))
+Out[9]: False
+
+In [10]: np.array_equiv(distance_matrix(y0s, y1s), dist_mx(y1s, y0s).astype(np.float64))
+Out[10]: True
+
+In [11]: np.array_equal(distance_matrix(y0s, y1s), dist_mx(y1s, y0s).astype(np.float64))
+Out[11]: True
+
 In [26]: %timeit distance_matrix(y0s, y1s)
 11.8 µs ± 92.7 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 
