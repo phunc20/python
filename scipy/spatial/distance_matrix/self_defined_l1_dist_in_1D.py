@@ -4,15 +4,15 @@ from scipy.spatial import distance_matrix
 
 
 def dist_mx(y0s, y1s):
-    row = y0s.reshape((1,-1))
-    col = y1s.reshape((-1,1))
+    row = y0s.reshape((-1,1))
+    col = y1s.reshape((1,-1))
     return np.abs(row-col)
 
 
 @jit(nopython=True)
 def jitted_dist_mx(y0s, y1s):
-    row = y0s.reshape((1,-1))
-    col = y1s.reshape((-1,1))
+    row = y0s.reshape((-1,1))
+    col = y1s.reshape((1,-1))
     return np.abs(row-col)
 
 %%timeit
@@ -59,19 +59,6 @@ y1s = np.random.randint(low=0, high=1024, size=(n_cols,1))
 distance_matrix(y0s, y1s)
 
 """
-!!!
-In [8]: np.array_equal(distance_matrix(y0s, y1s), dist_mx(y0s, y1s).astype(np.float64))
-Out[8]: False
-
-In [9]: np.array_equiv(distance_matrix(y0s, y1s), dist_mx(y0s, y1s).astype(np.float64))
-Out[9]: False
-
-In [10]: np.array_equiv(distance_matrix(y0s, y1s), dist_mx(y1s, y0s).astype(np.float64))
-Out[10]: True
-
-In [11]: np.array_equal(distance_matrix(y0s, y1s), dist_mx(y1s, y0s).astype(np.float64))
-Out[11]: True
-
 In [26]: %timeit distance_matrix(y0s, y1s)
 11.8 µs ± 92.7 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 
@@ -123,4 +110,21 @@ In [33]: %%timeit
     ...:
     ...:
 43.8 µs ± 650 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+"""
+
+# same dtype
+n_rows = np.random.randint(low=3, high=20)
+n_cols = np.random.randint(low=3, high=20)
+y0s = np.random.randint(low=0, high=1024, size=(n_rows,1)).astype(np.float64)
+y1s = np.random.randint(low=0, high=1024, size=(n_cols,1)).astype(np.float64)
+
+"""
+In [25]: np.array_equal(dist_mx(y0s, y1s), distance_matrix(y0s, y1s))
+Out[25]: True
+
+In [26]: %timeit distance_matrix(y0s, y1s)
+12.9 µs ± 36.8 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+
+In [27]: %timeit dist_mx(y0s, y1s)
+2.62 µs ± 9.69 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 """
