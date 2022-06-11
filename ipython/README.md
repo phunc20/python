@@ -1,7 +1,6 @@
-
-
-
-
+## IPython Magic
+1. `%run <your_script.py>` is the way one runs a Python script form within an IPython session.
+1. To automatically have IPython open `matplotlib.pyplot` plots, use the magic `%matplotlib`
 
 
 ## Crash at Tab-auto-complete
@@ -16,6 +15,3 @@ Briefly speaking, it says that it was the fault of `jedi==1.18.0` and it suffice
 jedi                 0.18.0
 (homl-1e) ~ ❯❯❯ pip install jedi==0.17.2
 ```
-
-
-
