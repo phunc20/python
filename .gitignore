@@ -1,9 +1,12 @@
 trash.*
 corbeille/
 .ipynb_checkpoints/
+.DS_Store
 
 __pycache__/
 *.log
+*.zip
+.swp*
 
 # Some particular files/folders
 bitwise-operators/logical_shift_manully.jl
