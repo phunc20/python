@@ -15,6 +15,6 @@
      In [56]: plt.show()
      ```
      Result:
-     ![images/elephant_cv_ticks.png]
+     ![elephant with CV-like coordinate system](images/elephant_cv_ticks.png "Elephant CV-like x,y-ticks")
 
 
