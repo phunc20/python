@@ -2,6 +2,10 @@
 1. Q: How to `plt.imshow()` with computer-vision-like xtick and ytick? A:
   - `plt`: Use `plt.ylim()` and `plt.tick_params()`
      ```python
+     In [50]: import matplotlib.pyplot as plt
+     
+     In [51]: plt.style.use("dark_background")
+     
      In [52]: A = plt.imread("images/elephant.jpg")
      
      In [53]: plt.imshow(A)
