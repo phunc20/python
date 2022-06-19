@@ -15,6 +15,6 @@
      In [56]: plt.show()
      ```
      Result:
-     [!images/elephant_cv_ticks.png]
+     ![images/elephant_cv_ticks.png]
 
 
