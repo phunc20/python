@@ -1,6 +1,6 @@
 
 `load_dataset()` supports a wide variety of file format and converts them
-into `Dataset` object.
+into `Dataset` object. Cf. <https://huggingface.co/docs/datasets/loading> for more info.
 - `.txt`: Use, for example, `load_dataset("text", data_files="path/to/your/file.txt")`.
   ```python
   In [1]: from datasets import load_dataset
