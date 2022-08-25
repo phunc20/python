@@ -103,3 +103,42 @@ array([[[  0,   0,   0],
         [  0, 190, 165],
         [150, 255, 128]]], dtype=uint8)
 ```
+
+Let's try with other `dtype`s.
+```python
+In [15]: rgbs_f64 = rgbs / 255.
+
+In [16]: rgbs_f64.dtype
+Out[16]: dtype('float64')
+
+In [19]: cv2.cvtColor(rgbs_f64[np.newaxis], cv2.COLOR_RGB2HSV)
+---------------------------------------------------------------------------
+error                                     Traceback (most recent call last)
+Input In [19], in <cell line: 1>()
+----> 1 cv2.cvtColor(rgbs_f32[np.newaxis], cv2.COLOR_RGB2HSV)
+
+error: OpenCV(4.6.0) /Users/runner/work/opencv-python/opencv-python/opencv/modules/imgproc/src/color.simd_helpers.hpp:94: error: (-2:
+Unspecified error) in function 'cv::impl::(anonymous namespace)::CvtHelper<cv::impl::(anonymous namespace)::Set<3, 4, -1>, cv::impl::
+(anonymous namespace)::Set<3, -1, -1>, cv::impl::(anonymous namespace)::Set<0, 5, -1>, cv::impl::(anonymous namespace)::NONE>::CvtHel
+per(cv::InputArray, cv::OutputArray, int) [VScn = cv::impl::(anonymous namespace)::Set<3, 4, -1>, VDcn = cv::impl::(anonymous namespa
+ce)::Set<3, -1, -1>, VDepth = cv::impl::(anonymous namespace)::Set<0, 5, -1>, sizePolicy = cv::impl::(anonymous namespace)::NONE]'
+> Unsupported depth of input image:
+>     'VDepth::contains(depth)'
+> where
+>     'depth' is 6 (CV_64F)
+
+In [20]: rgbs_f32 = (rgbs / 255.).astype(np.float32)
+
+In [22]: cv2.cvtColor(rgbs_f32[np.newaxis], cv2.COLOR_RGB2HSV)
+Out[22]:
+array([[[  0.        ,   0.        ,   0.        ],
+        [  0.        ,   0.        ,   1.        ],
+        [  0.        ,   0.9999999 ,   1.        ],
+        [120.        ,   0.99999976,   0.5019608 ],
+        [240.        ,   0.9999999 ,   1.        ],
+        [ 38.823524  ,   0.9999999 ,   1.        ],
+        [ 59.999992  ,   0.9999999 ,   1.        ],
+        [  0.        ,   0.        ,   0.5019608 ],
+        [  0.        ,   0.74545443,   0.64705884],
+        [300.        ,   0.99999976,   0.5019608 ]]], dtype=float32)
+```
