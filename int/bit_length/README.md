@@ -30,6 +30,14 @@ Out[81]: 5
 
 In [82]: (2**5).bit_length()
 Out[82]: 6
+
+In [83]: (42.).bit_length()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Input In [3], in <cell line: 1>()
+----> 1 (42.).bit_length()
+
+AttributeError: 'float' object has no attribute 'bit_length'
 ```
 
 **Rmk.**

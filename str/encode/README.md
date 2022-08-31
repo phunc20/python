@@ -24,14 +24,22 @@ In [7]: for char in discontinuous:
    ...:         print(f"{char}, {encoded}, {len(encoded)}")
    ...:
 
-In [8]:
+In [8]: len(discontinuous.encode("utf-8"))
+Out[8]: 210
+
+In [9]: len(discontinuous.encode("utf-16"))
+Out[9]: 142
+
+In [10]: len(discontinuous.encode("utf-32"))
+Out[10]: 284
 ```
 
 
 In UTF-8,
 
 - characters, like `"ç", "ê"`, costs `2` bytes each
-- Japanese kanji/katagana/hiragana, regardless of being full-width or half-width, costs `3` bytes each
+- Japanese kanji/katagana/hiragana, regardless of being full-width or half-width,
+  seems to cost `3` bytes each
 
 ```
 In [8]: " ".encode("utf-8")
@@ -40,12 +48,26 @@ Out[8]: b' '
 In [9]: "　".encode("utf-8")
 Out[9]: b'\xe3\x80\x80'
 
-In [10]: "Essaye le français peut-être.".encode("utf-8")
-Out[10]: b'Essaye le fran\xc3\xa7ais peut-\xc3\xaatre.'
+In [10]: "ｱｲｳｴｵ".encode("utf-8")
+Out[10]: b'\xef\xbd\xb1\xef\xbd\xb2\xef\xbd\xb3\xef\xbd\xb4\xef\xbd\xb5'
 
-In [11]: "ｱｲｳｴｵ".encode("utf-8")
-Out[11]: b'\xef\xbd\xb1\xef\xbd\xb2\xef\xbd\xb3\xef\xbd\xb4\xef\xbd\xb5'
+In [11]: len(_)
+Out[11]: 15
 
-In [12]: len(_)
-Out[12]: 15
+In [12]: len("€uro")
+Out[12]: 4
+
+In [13]: len("€uro".encode("utf-8"))
+Out[13]: 6
+
+In [14]: type("€uro".encode("utf-8"))
+Out[14]: bytes
+
+In [15]: for char in "€uro":
+    ...:     print(char, len(char.encode("utf-8")))
+    ...:
+€ 3
+u 1
+r 1
+o 1
 ```
