@@ -40,7 +40,31 @@ Out[36]: False
 
 
 
+## Keep shape/dimension
+Sometimes we would like to take a subarray, but of the same
+dimension as the original array. For example,
+```python
+In [12]: a = np.random.randn(1000, 1000, 3)
 
+In [13]: a.dtype
+Out[13]: dtype('float64')
 
+In [14]: %timeit a[0, [0]]
+1.73 µs ± 8.29 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 
+In [15]: %timeit a[0, 0:1]
+170 ns ± 0.405 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
+In [16]: np.shares_memory(a, a[0, [0]])
+Out[16]: False
+
+In [17]: np.shares_memory(a, a[0, 0:1])
+Out[17]: True
+
+In [18]: np.array_equal(a[0,[0]], a[0, 0:1])
+Out[18]: True
+```
+
+Just keep in mind that
+- extracting a subarray using a `list` always gives a copy, even when that list is of length `1`
+- extracting a subarray using slicing always gives a view.
