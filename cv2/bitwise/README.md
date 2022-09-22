@@ -38,4 +38,7 @@ array([[10.],
        [ 0.]])
 ```
 
-
+- <https://docs.opencv.org/4.x/d0/d86/tutorial_py_image_arithmetics.html>
+- <https://stackoverflow.com/questions/32774956/explain-arguments-meaning-in-res-cv2-bitwise-andimg-img-mask-mask>
+- <https://pyimagesearch.com/2018/11/05/creating-gifs-with-opencv/>
+- <https://pyimagesearch.com/2020/04/06/blur-and-anonymize-faces-with-opencv-and-python/>
