@@ -110,3 +110,8 @@ Out[32]: 11
 
 ## Notes
 - Python's sign bit doesn't have a fixed position; there is no sign bit at all in Python.
+
+
+## QnA
+1. How does Python determine the closest machine-representable floating-point number to a specified decimal number?
+   E.g. `0.1` is not finitely representable in binary. How does Python efficiently find the closest `float` to `0.1`?
