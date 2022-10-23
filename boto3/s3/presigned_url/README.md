@@ -15,5 +15,9 @@ https://docs.aws.amazon.com/code-library/latest/ug/s3_code_examples.html
 $ openssl rand -out fake.pdf -base64 $((2**24 * 3/4))
 $ du -hsx fake.pdf
 17M     fake.pdf
+$ aws s3 ls
+2022-10-17 14:46:06 ge10mb
+$ aws s3 rm s3://ge10mb/fake.pdf
+delete: s3://ge10mb/fake.pdf
 $ python presigned_url.py ge10mb fake.pdf put
 ```
