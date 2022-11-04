@@ -1,4 +1,18 @@
 
+## Constructing A `Selector` from HTML Text String
+```python
+In [1]: from scrapy.selector import Selector
+
+In [2]: with open("日本の企業一覧 - Wikipedia.html", "r") as f:
+   ...:     text = f.read()
+   ...:
+
+In [20]: sl = Selector(text=text)
+
+In [21]: len(sl.xpath('//table[@class="wikitable"]/tbody/tr'))
+Out[21]: 34
+```
+
 
 ## Merging/Concatenating `SelectorList`s
 Often one single XPath expression cannot capture all that we want.
