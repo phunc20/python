@@ -1,7 +1,7 @@
 ## Read and Write `.csv` Files
 - write using `to_csv()` method
 - read using `read_csv()` method
-  - By default, the first line of the CSV file will become the column names of the DataFrame. One way to change this is to provide the parameter `name=` a list of strings (column names).
+  - By default, the first line of the CSV file will become the column names of the DataFrame. One way to change this is to provide the parameter `names=` a list of strings (column names).
     - One can use the parameter `usecols=` to drop the unwanted columns when `read_csv()`. Note that if `names=` is provided as a list, then `usecols` should be its sublist.
   - **Caveat.** If you want the first column of your `.csv` file be the index of the DataFrame, then you should specify **`index_col=0`** to `read_csv()`.
     ```python
