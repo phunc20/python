@@ -43,7 +43,12 @@ def unify_format(colors):
         colors = (colors,)
     else:
         if len(colors) == 1:
-            if not isinstance(colors[0][0], (int, float)):
+            if not isinstance(colors[0][0], (
+                int, float,
+                np.uint8, np.uint16, np.uint32, np.uint64,
+                np.int8, np.int16, np.int32, np.int64,
+                )
+            ):
                 colors = colors[0]
     return colors
 
@@ -73,15 +78,18 @@ def display_colors(
     colors = unify_format(colors)
     #print(f"(After) {colors = }")
     n = len(colors)
-    pixels = [
-        np.array(c, dtype=np.uint8).reshape((1,1,3))
-        if colorspace == "rgb" else
-        cv2.cvtColor(
-            np.array(c, dtype=np.uint8).reshape((1,1,3)),
-            cv2.COLOR_HSV2RGB,
-        )
-        for c in colors
-    ]
+    pixels = []
+    for c in colors:
+        if isinstance(c, np.ndarray):
+            #pixel = c.reshape((1,1,3))
+            pixel = c.astype(np.uint8).reshape((1,1,3))
+        else:
+            pixel = np.array(c, dtype=np.uint8).reshape((1,1,3))
+
+        if colorspace == "hsv":
+            pixel = cv2.cvtColor(pixel, cv2.COLOR_HSV2RGB)
+
+        pixels.append(pixel)
     fig, axes = plt.subplots(1, n)
     if n == 1:
         axes.matshow(pixels[0])
