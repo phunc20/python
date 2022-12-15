@@ -1,8 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-
-plt.style.use("dark_background")
+from pathlib import Path
 
 
 def h_gimp2opencv(x):
@@ -117,3 +116,101 @@ def display_gimp_colors(
     colors = unify_format(colors)
     colors = [gimp2opencv(*color) for color in colors]
     display_colors(colors, colorspace=colorspace, show=show)
+
+
+def into_ndarray(color, shape=None):
+    if isinstance(color, np.ndarray):
+        res = color.astype(np.uint8)
+    elif isinstance(color, (tuple, list)):
+        res = np.array(color, dtype=np.uint8)
+    if shape:
+        res = res.reshape(shape)
+    return res
+
+
+H_MAX = 179
+def hsv_inRange(
+    hsv,
+    *,
+    low=[170,60,85],
+    high=[15,255,255],
+    debug=True,
+):
+    #if isinstance(image, (str, Path)):
+    #    bgr = cv2.imread(str(image))
+    #elif isinstance(image, np.ndarray):
+    #    bgr = image
+
+    #hsv = cv2.cvtColor(
+    #    bgr,
+    #    cv2.COLOR_BGR2HSV,
+    #)
+    h,s,v = low
+    H,S,V = high
+    if s > S or v > V:
+        raise ValueError(f"Saturation/Value lower bound greater than upper bound: {s, S, v, V = }")
+    if H < h:
+        low1 = np.array(low, dtype=np.uint8)
+        high1 = np.array([H_MAX, S, V], dtype=np.uint8)
+        mask1 = cv2.inRange(hsv, low1, high1)
+        low2 = np.array([0, s, v], dtype=np.uint8)
+        high2 = np.array(high, dtype=np.uint8)
+        mask2 = cv2.inRange(hsv, low2, high2)
+        mask = cv2.bitwise_or(mask1, mask2)
+    else:
+        low = np.array(low, dtype=np.uint8)
+        high = np.array(high, dtype=np.uint8)
+        mask = cv2.inRange(hsv, low, high)
+
+    return mask
+
+
+def draw_inRange_color(rgb_pixel, mask, filtered):
+    fig, (ax1, ax2, ax3) = plt.subplots(1,3)
+    ax1.matshow(rgb_pixel)
+    #ax1.text(-0.5, 0.25, f"hsv={hsv}",
+    #         #ha="left",
+    #         va="top",
+    #         fontsize=8,
+    #)
+    ax2.matshow(mask, cmap="gray", vmin=0, vmax=255)
+    ax3.matshow(filtered)
+    ax1.set_title("rgb")
+    ax2.set_title("mask")
+    ax3.set_title("filtered")
+    for ax in (ax1, ax2, ax3):
+        ax.set_xticks([])
+        ax.set_yticks([])
+    return fig
+
+
+def test_inRange(
+    hsv=[0, 216, 153],
+    *,
+    low=np.array([140, 30, 30], dtype=np.uint8),
+    high=np.array([29, 255, 255], dtype=np.uint8),
+):
+    hsv_pixel = into_ndarray(hsv, shape=(1,1,3))
+    low = into_ndarray(low)
+    high = into_ndarray(high)
+
+    rgb_pixel = cv2.cvtColor(hsv_pixel, cv2.COLOR_HSV2RGB)
+    mask = cv2.inRange(hsv_pixel, low, high)
+    filtered = cv2.bitwise_and(rgb_pixel, rgb_pixel, mask=mask)
+    fig = draw_inRange_color(rgb_pixel, mask, filtered)
+    return fig
+
+
+def test_hsv_inRange(
+    hsv=[0, 216, 153],
+    *,
+    low=np.array([140, 30, 30], dtype=np.uint8),
+    high=np.array([29, 255, 255], dtype=np.uint8),
+):
+    hsv_pixel = into_ndarray(hsv, shape=(1,1,3))
+
+    rgb_pixel = cv2.cvtColor(hsv_pixel, cv2.COLOR_HSV2RGB)
+    mask = hsv_inRange(hsv_pixel, low=low, high=high)
+    filtered = cv2.bitwise_and(rgb_pixel, rgb_pixel, mask=mask)
+    fig = draw_inRange_color(rgb_pixel, mask, filtered)
+    return fig
