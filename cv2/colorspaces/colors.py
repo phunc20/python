@@ -165,6 +165,23 @@ def hsv_inRange(
     return mask
 
 
+def rgb_inRange(
+    rgb,
+    *,
+    low=[170,60,85],
+    high=[15,255,255],
+):
+    r,g,b = low
+    R,G,B = high
+    if r > R or g > G or b > B:
+        raise ValueError(f"Saturation/Value lower bound greater than upper bound: {r, R, g, G, b, B = }")
+    low = np.array(low, dtype=np.uint8)
+    high = np.array(high, dtype=np.uint8)
+    mask = cv2.inRange(rgb, low, high)
+
+    return mask
+
+
 def draw_inRange_color(rgb_pixel, mask, filtered):
     fig, (ax1, ax2, ax3) = plt.subplots(1,3)
     ax1.matshow(rgb_pixel)
