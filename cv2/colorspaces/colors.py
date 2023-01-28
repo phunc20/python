@@ -231,3 +231,55 @@ def test_hsv_inRange(
     filtered = cv2.bitwise_and(rgb_pixel, rgb_pixel, mask=mask)
     fig = draw_inRange_color(rgb_pixel, mask, filtered)
     return fig
+
+
+def splendid_display_inRange(
+    *,
+    low=[165,35,120],
+    high=[7,255,255],
+    n_hues=5,
+    n_saturations=5,
+    n_values=5,
+    debug=False,
+):
+    h,s,v = low
+    H,S,V = high
+
+    if s > S or v > V:
+        raise ValueError(f"Saturation/Value lower bound greater than upper bound: {s, S, v, V = }")
+    if H < h:
+        H += 179
+
+    hues = np.linspace(h, H, num=n_hues).astype(np.uint8)
+    saturations = np.linspace(s, S, num=n_saturations).astype(np.uint8)
+    values = np.linspace(v, V, num=n_values).astype(np.uint8)
+
+    if debug:
+        print(f"{h,s,v = }")
+        print(f"{H,S,V = }")
+        print(f"{hues = }")
+        print(f"{saturations = }")
+        print(f"{values = }")
+
+    fig, ax = plt.subplots(n_hues, figsize=(40,100))
+    for i, hue in enumerate(hues):
+        if hue > 179:
+            hue -= 179
+
+        array = np.empty((n_saturations, n_values, 3), dtype=np.uint8)
+        for j, value in enumerate(values):
+            for k, saturation in enumerate(saturations):
+                array[j, k] = (hue, saturation, value)
+        array = cv2.cvtColor(array, cv2.COLOR_HSV2RGB)
+        ax[i].imshow(
+            array,
+        )
+        ax[i].set_title(
+            f"{hue = }"
+        )
+        ax[i].set_xlabel("saturation")
+        ax[i].set_xticks(range(n_saturations), saturations)
+
+        ax[i].set_ylabel("value")
+        ax[i].set_yticks(range(n_values), values)
+    return fig
