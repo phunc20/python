@@ -65,3 +65,9 @@ Out[16]: True
 - Correct doing: `df.iloc[i, j] = sth`
 - Wrong doing: `df.iloc[i][j] = sth` because we are not sure whether this modifies `df` or not.
   Besides, this consists of two operations instead of one.
+
+ipdb> df.iloc[-3, :]._is_view
+False
+ipdb> df.iloc[:, -4]._is_view
+True
+ipdb> df.loc[:, "left"]._is_view
