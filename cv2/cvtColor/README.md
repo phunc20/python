@@ -142,3 +142,7 @@ array([[[  0.        ,   0.        ,   0.        ],
         [  0.        ,   0.74545443,   0.64705884],
         [300.        ,   0.99999976,   0.5019608 ]]], dtype=float32)
 ```
+
+
+## `cv2.COLOR_GRAY2BGR`
+How is the conversion carried out? Cf. `01-COLOR_GRAY2BGR.ipynb`
