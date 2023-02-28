@@ -1,3 +1,7 @@
+## Environment
+- Python 3.10.9
+
+
 ## Back Reference
 Sometimes you need `re` to capture sth
 and place it somewhat differently. This
