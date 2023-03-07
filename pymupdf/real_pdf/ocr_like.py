@@ -1,4 +1,5 @@
 import argparse
+import pprint
 from pathlib import Path
 
 import fitz
@@ -71,13 +72,19 @@ def ocr_like_response(pdf_path="single_page.pdf", *, page_idx=0, output_type="bl
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-p",
-        "--pdf",
-        #nargs="?",
-        #const="single_page.pdf",
+        "pdf",
+        nargs="?",
         default="single_page.pdf",
         help="path to some PDF file",
     )
+    parser.add_argument(
+        "-t",
+        "--type",
+        nargs="?",
+        default="blocks",
+        help="output type",
+    )
     args = parser.parse_args()
-    response = ocr_like_response(args.pdf, output_type="lines", sort=True)
-    print(f"{response = }")
+    response = ocr_like_response(args.pdf, output_type=args.type, sort=True)
+    print("response =")
+    pprint.pprint(response)
