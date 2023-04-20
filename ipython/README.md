@@ -6,6 +6,11 @@
    from IPython.display import Image
    Image("my_fig.png")
    ```
+1. To auto-reload modified library code
+   ```python
+   %load_ext autoreload
+   %autoreload 2
+   ```
 
 
 ## Crash at Tab-auto-complete
