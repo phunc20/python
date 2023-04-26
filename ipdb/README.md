@@ -23,7 +23,11 @@
       ipdb> tbreak /home/phunc20/projects/pixelize_passport/util.py:726
       ```
     - Specify only line number: Presumably referring to the current file, i.e. where `ipdb` now locates
-
+- (Important!) `u` and `d`: Move one level up or down in the stack trace
+    - For example, you are deep inside the call stack of some function, and you
+      want to examine some variable, which is not in the current local scope but
+      in some calling function several levels up, then you can simply `u` until
+      you reach that level
 
 
 
