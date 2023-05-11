@@ -5,6 +5,46 @@
 
 
 ## Troubleshoot
+- Cannot install a virtual environment with older versions of Python (e.g. Python3.3)?
+    - You might not look into the right channel: (The default channel being `pkgs/main`)
+      ```bash
+      $ conda search python -c pkgs/main | grep "^python\s*3.4"
+      $ conda search python -c conda-forge | grep "^python\s*3.4"
+      python                         3.4.5               0  conda-forge
+      python                         3.4.5               1  conda-forge
+      python                         3.4.5               2  conda-forge
+      $ conda search python -c free | grep "^python\s*3.[3-4]"
+      python                         3.3.0               2  free
+      python                         3.3.0               3  free
+      python                         3.3.0               4  free
+      python                         3.3.1               0  free
+      python                         3.3.2               0  free
+      python                         3.3.2               1  free
+      python                         3.3.3               0  free
+      python                         3.3.4               0  free
+      python                         3.3.5               0  free
+      python                         3.3.5               1  free
+      python                         3.3.5               2  free
+      python                         3.3.5               3  free
+      python                         3.3.5               4  free
+      python                         3.4.0               0  free
+      python                         3.4.1               0  free
+      python                         3.4.1               1  free
+      python                         3.4.1               2  free
+      python                         3.4.1               3  free
+      python                         3.4.1               4  free
+      python                         3.4.2               0  free
+      python                         3.4.3               0  free
+      python                         3.4.3               1  free
+      python                         3.4.3               2  free
+      python                         3.4.4               0  free
+      python                         3.4.4               5  free
+      python                         3.4.5               0  free
+      ```
+      For example, we have found that the `free` channel contains Python3.3. We could install like this:
+      ```bash
+      $ conda create -n py3.3 python=3.3 -c free
+      ```
 - How to specify a package's installed version? Furthermore, when one version has more than one build, how to specify the one you want to install?
   ```bash
   (py3.6) ~ ❯❯❯ conda search tensorflow
