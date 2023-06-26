@@ -1,0 +1,4 @@
+jupyterlab==4.0.2
+tokenizers==0.7.0
+torch==2.0.1
+transformers==2.11.0
