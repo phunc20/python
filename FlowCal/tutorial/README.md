@@ -1,6 +1,7 @@
 ## Origin
 These notebooks are simply re-writes of the materials
 shared on <https://flowcal.readthedocs.io/en/latest/index.html>.
+More specifically, we are on `FlowCal==1.3.0`.
 
 The reason for doing this is to tailor them to my own habits.
 
@@ -9,11 +10,7 @@ Other related resources are
 
 
 ## Caveat
-1. `FlowCal`'s github repo seems to have been updated without its
-   [tutorial page](https://taborlab.github.io/FlowCal/python_tutorial/)
-   being updated at the same time.  
-   In particular, there no longer exists the file path `FlowCal/examples/FCFiles/Data001.fcs`
-    - Neither `FlowCal/examples/FCFiles/sample001.fcs`
-    - Nor `FlowCal/test/Data001.fcs`
-   is the same as the one presented in the tutorial
-
+1. Had you landed on a different doc page, e.g.
+   <https://taborlab.github.io/FlowCal/python_tutorial/>,
+   there risks to exist a few discrepencies btw there and here. In particular,
+    - The file `FlowCal/examples/FCFiles/Data001.fcs` no longer exists

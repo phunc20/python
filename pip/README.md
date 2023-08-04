@@ -12,6 +12,9 @@ pip freeze > requirements.txt
 # install a package in a way that reflect instantaneously the change
 pip install -e path/to/some/local/package/
 
+# install from GitHub
+pip install git+https://github.com/phunc20/ahead.git
+
 # To check avaiable package versions, e.g. tensorflow
 pip install tensorflow==
 # `pip search tensorflow` is no longer available
