@@ -15,6 +15,12 @@ SyntaxError: bytes can only contain ASCII literal characters.
 
 
 ```python
+In [1]: b"coleman" == "coleman".encode("utf-8")
+Out[1]: True
+
+In [2]: type(b"coleman")
+Out[2]: bytes
+
 In [17]: for k in range(10):
     ...:     print(f"sys.getsizeof(bytes({k})) = {sys.getsizeof(bytes(k))}")
     ...:

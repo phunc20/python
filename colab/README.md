@@ -26,4 +26,22 @@ sys.path.append("/content/google_drive/my_super_cool_python_code_repo")
 ```
 
 
+## Resources
+### Usage Rate
+Colab Pro admits 100 compute uints per month. Here are the usage rates
+of diff machines on Colab.
 
+- CPU: 0.08/h
+- T4 GPU: 1.96/h
+- V100 GPU:
+- A100 GPU:
+- TPU:
+
+
+### Default System RAM, GPU RAM and Disk Space
+Disk space are the same, 225.8 GB.
+
+- CPU
+    - System RAM: 12.7 GB
+- A100 GPU
+    - System RAM: 
