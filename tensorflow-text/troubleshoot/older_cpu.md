@@ -91,5 +91,6 @@ one can still build `tensorflow-text` from source. Here is how:
       -tf_bazel_version=$(cat .bazelversion)
       +tf_bazel_version=$(head -1 .bazelversion)
       ```
+        - Cf. <https://github.com/phunc20/text/releases/tag/v2.12.0_on_thinkpad_x61s>
     - Once these modifications done, go back to the compilation steps above, and it
       should compile just fine.
