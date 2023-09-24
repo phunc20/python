@@ -139,6 +139,8 @@ conda install -n tf2 jupyterlab
 conda install -n tf2 matplotlib -y
 # install a package with a specific version instead of the latest one
 conda install -n tf2 tensorflow-gpu=2.1.0
+# More precisely,
+conda install -c <channel> -n <env> pandas=<version>=<build>
 # install from another channel (the `-c` option), say, from conda-forge
 conda install -n tf2 nbdime -c conda-forge
 
