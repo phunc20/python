@@ -45,3 +45,8 @@ Disk space are the same, 225.8 GB.
     - System RAM: 12.7 GB
 - A100 GPU
     - System RAM: 
+
+
+## Run Time
+- Disconnet and delete runtime
+- Restart runtime
