@@ -1,0 +1,9 @@
+tensorflow==2.14.0
+tensorflow-datasets==4.9.3
+tensorflow-estimator==2.14.0
+tensorflow-gcs-config==2.14.0
+tensorflow-hub==0.15.0
+tensorflow-io-gcs-filesystem==0.34.0
+tensorflow-metadata==1.14.0
+tensorflow-probability==0.22.0
+tensorflow-recommenders==0.7.3
