@@ -1,3 +1,14 @@
+- Subset: Sometimes a `Datasets` could contain multiple subsets, e.g.
+  <https://huggingface.co/datasets/oscar>  
+  Say, you want to download the subset `"unshuffled_deduplicated_vi"`,
+  here is how you can do it using the `load_dataset` function:
+  ```python
+  # Wrong! Error message complaining couldn't find it on Hugging Face Hub
+  #dataset = load_dataset("oscar/unshuffled_deduplicated_vi")
+  # Correct
+  dataset = load_dataset("oscar", "unshuffled_deduplicated_vi")
+  ```
+
 
 `load_dataset()` supports a wide variety of file format and converts them
 into `Dataset` object. Cf. <https://huggingface.co/docs/datasets/loading> for more info.
