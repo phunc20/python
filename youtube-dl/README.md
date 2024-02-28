@@ -26,3 +26,13 @@
       ```sh
       $ pip install --upgrade "git+https://github.com/ytdl-org/youtube-dl.git"
       ```
+- (2024/02/28) Python 3.12.1 still with `youtube-dl==2021.12.17`.  
+  Solution found at <https://github.com/yt-dlp/yt-dlp/issues/6247#issuecomment-1433096554>.  
+  That is, make the following modification to the file at
+  `miniconda3/lib/python3.12/site-packages/youtube_dl/extractor/youtube.py`
+  ```python
+  # The original line
+  #'uploader_id': self._search_regex(r'/(?:channel|user)/([^/?&#]+)', owner_profile_url, 'uploader id') if owner_profile_url else None,
+  # Modified into this should work.
+  'uploader_id': self._search_regex(r'/(?:channel/|user/|(?=@))([^/?&#]+)', owner_profile_url, 'uploader id', default=None),
+  ```
