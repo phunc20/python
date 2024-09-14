@@ -34,3 +34,9 @@ jedi                 0.18.0
 ```
 - Enable: Find and uncomment the above line
 - Disable: Find and comment the above line
+
+
+## History
+- `%history ~1/` prints historical code from one session before
+- `%history ~11/1-10` prints historical code line 1 to 10 from 11 session before
+- `%history -f filename.txt` save the current session into `filename.txt`
