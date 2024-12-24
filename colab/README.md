@@ -49,4 +49,15 @@ Disk space are the same, 225.8 GB.
 
 ## Run Time
 - Disconnet and delete runtime
+    - Programmatically
+      ```python
+      from google.colab import runtime
+      from datetime import datetime
+      import time
+      
+      now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+      print(f"Runtime disconnected and deleted at {now}")
+      time.sleep(1)
+      runtime.unassign()
+      ```
 - Restart runtime
