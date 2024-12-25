@@ -51,11 +51,13 @@ Disk space are the same, 225.8 GB.
 - Disconnet and delete runtime
     - Programmatically
       ```python
-      from google.colab import runtime
-      from datetime import datetime
+      import pytz
       import time
+      from datetime import datetime
+      from google.colab import runtime
       
-      now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+      taipei_tz = pytz.timezone("Asia/Taipei")
+      now = datetime.now().astimezone(taipei_tz).isoformat()
       print(f"Runtime disconnected and deleted at {now}")
       time.sleep(1)
       runtime.unassign()
