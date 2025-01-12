@@ -1,3 +1,39 @@
+- [UTF-8 encoded bytes escaped with URL quoting](https://stackoverflow.com/questions/16566069/url-decode-utf-8-in-python)
+
+  ```ipython
+  In [1]: import urllib
+  
+  In [2]: urllib.parse.unquote("%E8%AE%80%E6%AA%94%E6%A1%88%E5%8F%8D%E8%80%8C%E6%AF%94%E8%BC%83%E6%85%A2")
+  Out[2]: '讀檔案反而比較慢'
+  ```
+
+  Conversely, we've got `urllib.parse.quote`:
+
+  ```ipython
+  In [1]: from urllib.parse import quote
+  
+  In [2]: quote("日本語教育")
+  Out[2]: '%E6%97%A5%E6%9C%AC%E8%AA%9E%E6%95%99%E8%82%B2'
+  ```
+
+  Related functions include `parse_qs` and `parse_qsl`, the former returning a `dict`,
+  the latter a `list`:
+
+  ```ipython
+  In [4]: query = 'name=Rajeev+Singh&phone=%2B919999999999&phone=%2B628888888888'
+  
+  In [5]: from urllib.parse import parse_qs, parse_qsl
+  
+  In [6]: parse_qs(query)
+  Out[6]: {'name': ['Rajeev Singh'], 'phone': ['+919999999999', '+628888888888']}
+  
+  In [7]: parse_qsl(query)
+  Out[7]:
+  [('name', 'Rajeev Singh'),
+   ('phone', '+919999999999'),
+   ('phone', '+628888888888')]
+  ```
+
 - Instead of being similar to `"/".join([base, url])`,
   `urllib.parse.urljoin(base, url)` seems to be more like `"".join([base, url])`:
   ```bash
