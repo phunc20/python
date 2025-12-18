@@ -20,7 +20,7 @@ One has different options to initialize a Pandas DataFrame:
        for k, v in example_entry.items()
    })
    ```
-2. W/o specifying `dtype` for each column
+1. W/o specifying `dtype` for each column
    ```python
    df = pd.DataFrame(
        columns=('code', 'name', 'singer', 'lang',),
