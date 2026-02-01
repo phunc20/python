@@ -4,6 +4,8 @@ Install packages in a virtual environment in `uv`:
 
 - Don't `uv pip install`; instead, `uv add`
 - For one-off requirements, use `uvx` or `uv run --with`.
+    - Or, more correctly, `uvx` is abbr. of `uv tool run`?
+      ([an `uv` tuto by Corey Schafer](https://www.youtube.com/watch?v=AMdG7IjgSPM))
 - Add the following to your `pyproject.toml` if you don't want `uv`
   to manage the project environment:
   ```
@@ -33,3 +35,9 @@ Install packages in a virtual environment in `uv`:
   $ grep python my-project/pyproject.toml
   requires-python = ">=3.14"
   ```
+
+
+## `git clone` A New Python Project Created by `uv`
+In this case, how to recreate the same Python environment and run (as indicated in `pyproject.toml` and `uv.lock`)?
+
+Just `uv run` any Python script in your `src/`!
