@@ -7,7 +7,7 @@ from dash.exceptions import PreventUpdate
 
 # TODO:
 # 1. Checklist label instead of output-str
-#
+# 2. More the alignment prettier
 
 app = Dash()
 
@@ -91,97 +91,39 @@ app.layout = html.Div(
     ]
 )
 
-# Callback to add new item to list
+
 @callback(
-    Output("list-container-div", "children",
-        allow_duplicate=True,
-    ),
-    Output("new-item-input", "value"),
     Output("add-btn", "n_clicks"),
     Input("new-item-input", "n_submit"),
+    State("add-btn", "n_clicks"),
+    prevent_initial_call=True,
+)
+def enable_enter_keypress(n_submit, n_clicks):
+    """
+    When the user type an item in the input text box and press Enter,
+    this should have the same effet as clicking the add button.
+    """
+    if n_clicks is None:
+        return 1
+    else:
+        return n_clicks + 1
+
+
+@callback(
+    Output("list-container-div", "children", allow_duplicate=True),
+    Output("new-item-input", "value"),
     Input("add-btn", "n_clicks"),
     State("new-item-input", "value"),
     prevent_initial_call=True,
 )
-def add_item(n_submit, button_clicked, value):
+def add_item(button_clicked, value):
     """
     Output("new-item-input", "value")
     The reason we put this output in the callback is because
     we want to clean up the input text once the user confirms
-    one todo item, i.e. we return empty string `""`.
+    one todo item, i.e. we return an empty string `""`.
     """
-    print(f'{n_submit = }')
-    ctx = callback_context
-
-    if not ctx.triggered:
-        #return [no_update]*3
-        raise PreventUpdate
-
-    #def new_checklist_item():
-    #    return html.Div(
-    #        [
-    #            dcc.Checklist(
-    #                options=[{"label": "", "value": "done"}],
-    #                id={"index": button_clicked, "type": "done"},
-    #                style={"display": "inline", "text-align": "left"},
-    #                labelStyle={"display": "inline"},
-    #            ),
-    #            html.Div(
-    #                [value],
-    #                id={"index": button_clicked, "type": "output-str"},
-    #                style={"display": "inline", "margin": "10px"},
-    #            ),
-    #        ]
-    #    )
-
     def new_checklist_item():
-        #return html.Div(
-        #    [
-        #        dcc.Checklist(
-        #            options=[{"label": "", "value": "done"}],
-        #            id={"index": button_clicked, "type": "done"},
-        #            style={"margin-right": "10px"}, 
-        #        ),
-        #        html.Div(
-        #            [value],
-        #            id={"index": button_clicked, "type": "output-str"},
-        #            style={"flex": "1"}, # Allows text to take up remaining space
-        #        ),
-        #    ],
-        #    style={
-        #        "display": "flex",          # Turn on Flexbox
-        #        "align-items": "center",    # Vertically aligns checkbox with text
-        #        "justify-content": "center",# Centers the whole row horizontally
-        #        "max-width": "500px",       # Prevents the list from getting too wide
-        #        "margin": "0 auto",         # Centers the container itself on the page
-        #        "padding": "10px"
-        #    }
-        #)
-
-        #return html.Div(
-        #    [
-        #        dcc.Checklist(
-        #            options=[{"label": "", "value": "done"}],
-        #            id={"index": button_clicked, "type": "done"},
-        #            # inline-block keeps it from forcing a new line
-        #            style={"display": "inline-block", "vertical-align": "middle"},
-        #            inputStyle={"margin": "0"} # Removes default checkbox margin
-        #        ),
-        #        html.Div(
-        #            [value],
-        #            id={"index": button_clicked, "type": "output-str"},
-        #            style={"display": "inline-block", "vertical-align": "middle"}
-        #        ),
-        #    ],
-        #    style={
-        #        "display": "flex",
-        #        "align-items": "center",
-        #        "justify-content": "center", # Centers the whole group
-        #        "gap": "8px",                # Controlled pixel-perfect horizontal gap
-        #        "padding": "2px 0",          # Tight vertical spacing between rows
-        #        "line-height": "1",          # Collapses vertical text height
-        #    }
-        #)
         return html.Div(
             [
                 dcc.Checklist(
@@ -197,28 +139,104 @@ def add_item(n_submit, button_clicked, value):
                 ),
             ],
             style={
-                "display": "flex", 
-                "align-items": "center", 
+                "display": "flex",
+                "align-items": "center",
                 "padding": "2px 0" # Vertical tightness
             }
         )
 
-    trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    # Cf. <https://dash.plotly.com/partial-properties#allowing-duplicate-callback-outputs>
+    # in case one wonders how Patch() works with multiple-output callbacks.
     patched_list = Patch()
-    if trigger_id == "new-item-input":
-        if button_clicked:
-            button_clicked += 1
-        else:
-            button_clicked = 1
-        print(f'{button_clicked = }')
-        patched_list.append(new_checklist_item())
-        return patched_list, "", button_clicked
-    elif trigger_id == "add-btn":
-        print(f'{button_clicked = }')
-        patched_list.append(new_checklist_item())
-        return patched_list, "", no_update
-    else:
-        raise PreventUpdate
+    patched_list.append(new_checklist_item())
+    return patched_list, ""
+
+
+#    #def new_checklist_item():
+#    #    return html.Div(
+#    #        [
+#    #            dcc.Checklist(
+#    #                options=[{"label": "", "value": "done"}],
+#    #                id={"index": button_clicked, "type": "done"},
+#    #                style={"display": "inline", "text-align": "left"},
+#    #                labelStyle={"display": "inline"},
+#    #            ),
+#    #            html.Div(
+#    #                [value],
+#    #                id={"index": button_clicked, "type": "output-str"},
+#    #                style={"display": "inline", "margin": "10px"},
+#    #            ),
+#    #        ]
+#    #    )
+#
+#    def new_checklist_item():
+#        #return html.Div(
+#        #    [
+#        #        dcc.Checklist(
+#        #            options=[{"label": "", "value": "done"}],
+#        #            id={"index": button_clicked, "type": "done"},
+#        #            style={"margin-right": "10px"},
+#        #        ),
+#        #        html.Div(
+#        #            [value],
+#        #            id={"index": button_clicked, "type": "output-str"},
+#        #            style={"flex": "1"}, # Allows text to take up remaining space
+#        #        ),
+#        #    ],
+#        #    style={
+#        #        "display": "flex",          # Turn on Flexbox
+#        #        "align-items": "center",    # Vertically aligns checkbox with text
+#        #        "justify-content": "center",# Centers the whole row horizontally
+#        #        "max-width": "500px",       # Prevents the list from getting too wide
+#        #        "margin": "0 auto",         # Centers the container itself on the page
+#        #        "padding": "10px"
+#        #    }
+#        #)
+#
+#        #return html.Div(
+#        #    [
+#        #        dcc.Checklist(
+#        #            options=[{"label": "", "value": "done"}],
+#        #            id={"index": button_clicked, "type": "done"},
+#        #            # inline-block keeps it from forcing a new line
+#        #            style={"display": "inline-block", "vertical-align": "middle"},
+#        #            inputStyle={"margin": "0"} # Removes default checkbox margin
+#        #        ),
+#        #        html.Div(
+#        #            [value],
+#        #            id={"index": button_clicked, "type": "output-str"},
+#        #            style={"display": "inline-block", "vertical-align": "middle"}
+#        #        ),
+#        #    ],
+#        #    style={
+#        #        "display": "flex",
+#        #        "align-items": "center",
+#        #        "justify-content": "center", # Centers the whole group
+#        #        "gap": "8px",                # Controlled pixel-perfect horizontal gap
+#        #        "padding": "2px 0",          # Tight vertical spacing between rows
+#        #        "line-height": "1",          # Collapses vertical text height
+#        #    }
+#        #)
+#        return html.Div(
+#            [
+#                dcc.Checklist(
+#                    options=[{"label": "", "value": "done"}],
+#                    id={"index": button_clicked, "type": "done"},
+#                    style={"display": "inline-block", "vertical-align": "middle"},
+#                    inputStyle={"margin": "0"}
+#                ),
+#                html.Div(
+#                    value,
+#                    id={"index": button_clicked, "type": "output-str"},
+#                    style={"display": "inline-block", "vertical-align": "middle", "margin-left": "8px"},
+#                ),
+#            ],
+#            style={
+#                "display": "flex",
+#                "align-items": "center",
+#                "padding": "2px 0" # Vertical tightness
+#            }
+#        )
 
 
 @callback(
