@@ -8,6 +8,7 @@ from dash.exceptions import PreventUpdate
 # TODO:
 # 1. Checklist label instead of output-str
 # 2. More the alignment prettier
+# 3. Add a check-all-btn
 
 app = Dash()
 
@@ -116,7 +117,7 @@ def enable_enter_keypress(n_submit, n_clicks):
     State("new-item-input", "value"),
     prevent_initial_call=True,
 )
-def add_item(button_clicked, value):
+def add_item(n_clicks: int, item: str):
     """
     Output("new-item-input", "value")
     The reason we put this output in the callback is because
@@ -124,20 +125,15 @@ def add_item(button_clicked, value):
     one todo item, i.e. we return an empty string `""`.
     """
     def new_checklist_item():
+        print(f'{item = }')
         return html.Div(
-            [
-                dcc.Checklist(
-                    options=[{"label": "", "value": "done"}],
-                    id={"index": button_clicked, "type": "done"},
-                    style={"display": "inline-block", "vertical-align": "middle"},
-                    inputStyle={"margin": "0"}
-                ),
-                html.Div(
-                    value,
-                    id={"index": button_clicked, "type": "output-str"},
-                    style={"display": "inline-block", "vertical-align": "middle", "margin-left": "8px"},
-                ),
-            ],
+            children=dcc.Checklist(
+                options=[{"label": item if item else "", "value": "done"}],
+                id={"index": n_clicks, "type": "done"},
+                style={"display": "inline-block", "vertical-align": "middle"},
+                inputStyle={"margin-right": "10px"},
+                #labelStyle={},
+            ),
             style={
                 "display": "flex",
                 "align-items": "center",
@@ -240,32 +236,11 @@ def add_item(button_clicked, value):
 
 
 @callback(
-    Output({"index": MATCH, "type": "done"}, "value"),
-    Input({"index": MATCH, "type": "output-str"}, "n_clicks"),
-    State({"index": MATCH, "type": "done"}, "value"),
-    prevent_initial_call=True,
-)
-def equiv_output_str_and_checkbox_clicks(
-        n_clicks,
-        current_value,
-):
-    if n_clicks:
-        if current_value is None or current_value == []:
-            return ["done"]
-        else:
-            return []
-    else:
-        raise PreventUpdate
-
-
-@callback(
-    Output({"index": MATCH, "type": "output-str"}, "style"),
+    Output({"index": MATCH, "type": "done"}, "style"),
     Input({"index": MATCH, "type": "done"}, "value"),
     prevent_initial_call=True,
 )
-def checkbox_toggle(
-        value,
-):
+def toggle_checkbox(value):
     """
     The only `value` I have seen are
     - `[]`
@@ -276,7 +251,7 @@ def checkbox_toggle(
     style = Patch()
     if len(value) == 0:
         # Note that we cannot write style.pop() because style is not a dict
-        style["textDecoration"] = None
+        style["text-decoration"] = None
         style["color"] = None
     elif value[0] == "done":
         #style = {
@@ -285,7 +260,7 @@ def checkbox_toggle(
         #    "textDecoration": "line-through",
         #    "color": "#888",
         #}
-        style["textDecoration"] = "line-through"
+        style["text-decoration"] = "line-through"
         style["color"] = "gray"
     return style
 
