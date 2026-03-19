@@ -1,0 +1,2 @@
+- How to change a `uv` project's Python version?
+    - E.g. `uv python pin 3.13`
